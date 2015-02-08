@@ -1,0 +1,7 @@
+parameters:
+#    project_portal.example.class: Project\PortalBundle\Example
+
+services:
+#    project_portal.example:
+#        class: %project_portal.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

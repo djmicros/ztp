@@ -1,0 +1,4 @@
+project_portal:
+    resource: "@ProjectPortalBundle/Resources/config/routing.yml"
+    prefix:   /
+
