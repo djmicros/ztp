@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/structure.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/body.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/exception.css') }}" />
+{% endblock %}
+
+{% block body %}
+{% for post in posts %}
+    {{ loop.index }} - {{ post.title[:20] ~ '...'}} - <a href="view/{{ loop.index - 1}}">Zobacz więcej...
+                    </a>
+	</br>
+{% endfor %}
+{% endblock %}

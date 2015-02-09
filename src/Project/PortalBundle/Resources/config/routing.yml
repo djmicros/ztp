@@ -1,3 +1,7 @@
-project_portal_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ProjectPortalBundle:Default:index }
+project_portal_index:
+    pattern:  /index
+    defaults: { _controller: ProjectPortalBundle:Posts:index }
+project_portal_view:
+    pattern:  /view/{post_id}
+    defaults: { _controller: ProjectPortalBundle:Posts:view }
+

@@ -11,3 +11,4 @@ class DefaultController extends Controller
         return $this->render('ProjectPortalBundle:Default:index.html.twig', array('name' => $name));
     }
 }
+
