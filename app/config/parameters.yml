@@ -2,7 +2,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: symfony
+    database_name: 10_kuciel
     database_user: 10_kuciel
     database_password: M1n3s9z7
     mailer_transport: smtp

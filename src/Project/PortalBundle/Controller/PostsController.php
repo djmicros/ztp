@@ -10,7 +10,7 @@ class PostsController extends Controller
 
  /**
      * @Route("/")
-     */
+
 
 	public function indexAction()
     {
@@ -49,13 +49,15 @@ class PostsController extends Controller
 
 		return $this->render('ProjectPortalBundle:Posts:index.html.twig', array('posts' => $posts ));
     }
-	
-	 /**
-     * @Route("/view/{post_id}")
-     */
+	     */
+
 
 	public function viewAction($post_id)
     {
+		
+			 /**
+     * @Route("/view/{post_id}")
+
 		$posts = array(
     0 => array(
         'title' => 'Suspendisse potenti',
@@ -89,14 +91,25 @@ class PostsController extends Controller
     ),  
 );
 
+	     */
+
+	    $current_post = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:Posts')
+        ->find($post_id);
+
+    if (!$current_post) {
+        throw $this->createNotFoundException(
+            'No post found for id in the database '.$post_id
+        );
+    }
 	
-	
+				 /**
     if (!in_array($post_id, $posts)) {
         throw $this->createNotFoundException('The post does not exist');
     }
 	
 	$current_post = $posts[$post_id];
-	
+	*/
         return $this->render('ProjectPortalBundle:Posts:view.html.twig', array('post' => $current_post ));
     }
 }
