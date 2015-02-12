@@ -3,7 +3,11 @@ namespace Project\PortalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
+use Project\PortalBundle\Form\Type;
+use Project\PortalBundle\Entity\Posts;
 
 class PostsController extends Controller
 {
@@ -111,5 +115,47 @@ class PostsController extends Controller
 	$current_post = $posts[$post_id];
 	*/
         return $this->render('ProjectPortalBundle:Posts:view.html.twig', array('post' => $current_post ));
+    }
+	
+	    public function addAction(Request $request)
+    {
+
+        $post = new Posts();
+        $postForm = $this->createForm(new Type\PostType(), $post);
+
+        if ($request->isMethod('post')) {
+
+            $postForm->bindRequest($request);
+
+            if ($postForm->isValid()) {
+
+                $post = $postForm->getData();
+		
+
+				
+				$em = $this->getDoctrine()->getManager();
+
+					$em->persist($post);
+					$em->flush();
+
+					//throw $this->viewAction($object);
+					 return new Response('News added successfuly');
+				//return new Response('Post created -  id '.$post->getId());
+				//return $this->render('ProjectPortalBundle:Posts:view.html.twig', array('post' => $object ));
+
+	
+				 /**
+    if (!in_array($post_id, $posts)) {
+        throw $this->createNotFoundException('The post does not exist');
+    }
+	
+	$current_post = $posts[$post_id];
+	*/
+
+            }
+
+        }
+
+        return $this->render('ProjectPortalBundle:Posts:add.html.twig', array('form' => $postForm->createView()));
     }
 }

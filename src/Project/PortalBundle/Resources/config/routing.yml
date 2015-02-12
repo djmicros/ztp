@@ -5,3 +5,6 @@ project_portal_view:
     pattern:  /view/{post_id}
     defaults: { _controller: ProjectPortalBundle:Posts:view }
 
+project_portal_add:
+    pattern:  /add
+    defaults: { _controller: ProjectPortalBundle:Posts:add }
