@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Comment" table="Comment">
+    <indexes>
+      <index name="fk_Comment_User1_idx" columns="User_user_id"/>
+      <index name="fk_Comment_Post1_idx" columns="Post_post_id"/>
+    </indexes>
+    <id name="commentId" type="integer" column="comment_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="commentBody" type="text" column="comment_body" nullable="false"/>
+    <field name="commentDate" type="datetime" column="comment_date" nullable="false"/>
+    <many-to-one field="postPost" target-entity="Post">
+      <join-columns>
+        <join-column name="Post_post_id" referenced-column-name="post_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="userUser" target-entity="User">
+      <join-columns>
+        <join-column name="User_user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

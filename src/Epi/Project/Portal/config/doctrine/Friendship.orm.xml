@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Friendship" table="Friendship">
+    <indexes>
+      <index name="fk_Friendship_User1_idx" columns="User_user_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="friend_2_UNIQUE" columns="friend_2"/>
+      <unique-constraint name="friend_1_UNIQUE" columns="friend_1"/>
+    </unique-constraints>
+    <id name="friendshipId" type="integer" column="friendship_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="friendshipDate" type="datetime" column="friendship_date" nullable="false"/>
+    <field name="friend1" type="integer" column="friend_1" nullable="false"/>
+    <field name="friend2" type="integer" column="friend_2" nullable="false"/>
+    <many-to-one field="userUser" target-entity="User">
+      <join-columns>
+        <join-column name="User_user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
