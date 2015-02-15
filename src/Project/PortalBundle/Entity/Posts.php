@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="posts")
  * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
  */
 class Posts
 {
@@ -51,15 +50,7 @@ class Posts
     private $id;
 
 
-/** @ORM\PreUpdate() */
 
-	public function __construct()
-    {
-        $this->setCreatedAt(new \DateTime());
-		$this->setIsActive("1");
-    }
-	
-	
     /**
      * Set createdAt
      *
@@ -69,6 +60,7 @@ class Posts
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 

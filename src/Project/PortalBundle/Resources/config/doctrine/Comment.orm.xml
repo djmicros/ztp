@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Comment" table="Comment">
+  <entity name="Project\PortalBundle\Entity\Comment" table="Comment">
     <indexes>
       <index name="fk_Comment_User1_idx" columns="User_user_id"/>
       <index name="fk_Comment_Post1_idx" columns="Post_post_id"/>

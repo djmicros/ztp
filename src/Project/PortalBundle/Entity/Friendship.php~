@@ -1,0 +1,56 @@
+<?php
+
+namespace Project\PortalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Friendship
+ *
+ * @ORM\Table(name="Friendship", uniqueConstraints={@ORM\UniqueConstraint(name="friend_2_UNIQUE", columns={"friend_2"}), @ORM\UniqueConstraint(name="friend_1_UNIQUE", columns={"friend_1"})}, indexes={@ORM\Index(name="fk_Friendship_User1_idx", columns={"User_user_id"})})
+ * @ORM\Entity
+ */
+class Friendship
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="friendship_date", type="datetime", nullable=false)
+     */
+    private $friendshipDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="friend_1", type="integer", nullable=false)
+     */
+    private $friend1;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="friend_2", type="integer", nullable=false)
+     */
+    private $friend2;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="friendship_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $friendshipId;
+
+    /**
+     * @var \Project\PortalBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="User_user_id", referencedColumnName="user_id")
+     * })
+     */
+    private $userUser;
+
+
+}

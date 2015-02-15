@@ -1,0 +1,49 @@
+<?php
+
+namespace Project\PortalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Post
+ *
+ * @ORM\Table(name="Post", indexes={@ORM\Index(name="fk_Post_User1_idx", columns={"User_user_id"})})
+ * @ORM\Entity
+ */
+class Post
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="post_body", type="text", nullable=false)
+     */
+    private $postBody;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="post_date", type="datetime", nullable=false)
+     */
+    private $postDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="post_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $postId;
+
+    /**
+     * @var \Project\PortalBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="User_user_id", referencedColumnName="user_id")
+     * })
+     */
+    private $userUser;
+
+
+}
