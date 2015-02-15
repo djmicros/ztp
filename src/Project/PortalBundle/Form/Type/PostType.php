@@ -10,11 +10,9 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		$time = new \DateTime();
 		
         $builder
-			->add('title', 'text')
-			->add('content', 'textarea')
+			->add('post_body', 'textarea')
 			//->add('created_at', 'hidden', array('data' => $time))
 			;
     }

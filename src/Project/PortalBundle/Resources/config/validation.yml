@@ -1,16 +1,9 @@
-Project\PortalBundle\Entity\Posts:
+Project\PortalBundle\Entity\Post:
     properties:
-        createdAt:
+        postDate:
             - NotBlank: ~
             - DateTime: ~
-        isActive:
-            - NotBlank: ~
-            - Choice: { 0: "Inactive", 1: "Active" }
-        title:
-            - NotBlank: ~
-            - MinLength: {limit: 3}
-            - MaxLength: {limit: 255}
-        content:
+        postBody:
             - NotBlank: ~
             - MinLength: {limit: 3}
             - MaxLength: {limit: 2000}

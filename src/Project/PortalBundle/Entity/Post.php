@@ -46,6 +46,11 @@ class Post
     private $userUser;
 
 
+	    public function __construct()
+    {
+        $this->setPostDate(new \DateTime());
+		$this->setUserUser(1);
+    }
 
     /**
      * Set postBody
@@ -109,7 +114,8 @@ class Post
      * @param \Project\PortalBundle\Entity\User $userUser
      * @return Post
      */
-    public function setUserUser(\Project\PortalBundle\Entity\User $userUser = null)
+   public function setUserUser(\Project\PortalBundle\Entity\User $userUser = null)
+   
     {
         $this->userUser = $userUser;
 

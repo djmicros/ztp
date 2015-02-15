@@ -1,10 +1,15 @@
 project_portal_index:
     pattern:  /index
-    defaults: { _controller: ProjectPortalBundle:Posts:index }
+    defaults: { _controller: ProjectPortalBundle:Post:index }
+
 project_portal_view:
     pattern:  /view/{post_id}
-    defaults: { _controller: ProjectPortalBundle:Posts:view }
+    defaults: { _controller: ProjectPortalBundle:Post:view }
 
 project_portal_add:
     pattern:  /add
-    defaults: { _controller: ProjectPortalBundle:Posts:add }
+    defaults: { _controller: ProjectPortalBundle:Post:add }
+
+project_portal_user:
+    pattern:  /user/{user_id}
+    defaults: { _controller: ProjectPortalBundle:User:view }

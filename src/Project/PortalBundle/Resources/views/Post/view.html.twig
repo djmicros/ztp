@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <div class="well">
+		<p>
+        <h1> Tytuł Postu: {{ post.title }}! </h1>
+		</br>
+		Treść Postu: {{ post.content }}
+		</p>
+	</div>
+{% endblock %}
