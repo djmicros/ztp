@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Message" table="Message">
+    <indexes>
+      <index name="fk_Message_User_idx" columns="User_user_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="id_from_UNIQUE" columns="id_from"/>
+      <unique-constraint name="id_to_UNIQUE" columns="id_to"/>
+    </unique-constraints>
+    <id name="messageId" type="integer" column="message_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idFrom" type="integer" column="id_from" nullable="false"/>
+    <field name="idTo" type="integer" column="id_to" nullable="false"/>
+    <field name="messageTime" type="datetime" column="message_time" nullable="false"/>
+    <field name="msgBody" type="text" column="msg_body" nullable="false"/>
+    <many-to-one field="userUser" target-entity="User">
+      <join-columns>
+        <join-column name="User_user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

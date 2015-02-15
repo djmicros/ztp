@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Post" table="Post">
+    <indexes>
+      <index name="fk_Post_User1_idx" columns="User_user_id"/>
+    </indexes>
+    <id name="postId" type="integer" column="post_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="postBody" type="text" column="post_body" nullable="false"/>
+    <field name="postDate" type="datetime" column="post_date" nullable="false"/>
+    <many-to-one field="userUser" target-entity="User">
+      <join-columns>
+        <join-column name="User_user_id" referenced-column-name="user_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
