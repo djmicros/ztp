@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-//use Project\PortalBundle\Form\Type;
+use Project\PortalBundle\Form\Type;
 use Project\PortalBundle\Entity\User;
 
 class UserController extends Controller
@@ -55,12 +55,12 @@ class UserController extends Controller
 	*/
         return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user ));
     }
-					 /**
+
 	    public function addAction(Request $request)
     {
 
-        $post = new Post();
-        $postForm = $this->createForm(new Type\PostType(), $post);
+        $user = new User();
+        $postForm = $this->createForm(new Type\UserType(), $user);
 
         if ($request->isMethod('post')) {
 
@@ -68,23 +68,19 @@ class UserController extends Controller
 
             if ($postForm->isValid()) {
 
-                $post = $postForm->getData();
+                $user = $postForm->getData();
 		
 
 				
 				$em = $this->getDoctrine()->getManager();
 
-					$em->persist($post);
+					$em->persist($user);
 					$em->flush();
-
-					//throw $this->viewAction($object);
-					 //return new Response('News added successfuly');
-				//return new Response('Post created -  id '.$post->getId());
-				//return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $object ));
+					$user_id = $user->getId();
 				
 				        $request->getSession()->getFlashBag()->add(
             'notice',
-            'Your post were saved!'
+            'User registered!'
         );
 				
 		$repository = $this->getDoctrine()
@@ -92,10 +88,10 @@ class UserController extends Controller
 		
 		$posts = $repository->findAll();
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+		return $this->render('ProjectPortalBundle:User:view.html.twig', array('user_id' => $user_id));
 
 	
-				 /**
+
     if (!in_array($post_id, $posts)) {
         throw $this->createNotFoundException('The post does not exist');
     }
@@ -109,5 +105,5 @@ class UserController extends Controller
 
         return $this->render('ProjectPortalBundle:Post:add.html.twig', array('form' => $postForm->createView()));
     } 
-	*/
+
 }
