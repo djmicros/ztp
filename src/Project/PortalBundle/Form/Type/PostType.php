@@ -12,9 +12,7 @@ class PostType extends AbstractType
     {
 		
         $builder
-			->add('post_body', 'textarea')
-			//->add('created_at', 'hidden', array('data' => $time))
-			;
+			->add('post_body', 'textarea');
     }
 
     public function getName()

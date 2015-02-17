@@ -60,50 +60,38 @@ class UserController extends Controller
     {
 
         $user = new User();
-        $postForm = $this->createForm(new Type\UserType(), $user);
+        $userForm = $this->createForm(new Type\UserType(), $user);
 
         if ($request->isMethod('post')) {
 
-            $postForm->bindRequest($request);
+            $userForm->bindRequest($request);
 
-            if ($postForm->isValid()) {
+            if ($userForm->isValid()) {
 
-                $user = $postForm->getData();
-		
-
+                $user = $userForm->getData();
 				
 				$em = $this->getDoctrine()->getManager();
 
 					$em->persist($user);
 					$em->flush();
-					$user_id = $user->getId();
+					$user_id = $user->getUserId();
 				
 				        $request->getSession()->getFlashBag()->add(
             'notice',
             'User registered!'
         );
-				
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
 		
-		$posts = $repository->findAll();
+		$current_user = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:User')
+        ->find($user_id);
 
-		return $this->render('ProjectPortalBundle:User:view.html.twig', array('user_id' => $user_id));
-
-	
-
-    if (!in_array($post_id, $posts)) {
-        throw $this->createNotFoundException('The post does not exist');
-    }
-	
-	$current_post = $posts[$post_id];
-	
+        return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user ));
 
             }
 
         }
-
-        return $this->render('ProjectPortalBundle:Post:add.html.twig', array('form' => $postForm->createView()));
+		
+		return $this->render('ProjectPortalBundle:User:add.html.twig', array('form' => $userForm->createView()));
     } 
 
 }

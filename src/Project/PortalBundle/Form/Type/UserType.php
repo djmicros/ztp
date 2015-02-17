@@ -17,7 +17,7 @@ class UserType extends AbstractType
 			->add('email', 'text')
 			->add('gender', 'choice', array(
   'choice_list' => new ChoiceList(array("m", "f"), array('Male', 'Female'))))
-			->add('birth_date', 'date', array(
+			->add('birthDate', 'date', array(
     'widget' => 'single_text',
     // this is actually the default format for single_text
     'format' => 'yyyy-MM-dd',

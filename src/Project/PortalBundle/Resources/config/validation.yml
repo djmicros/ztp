@@ -6,4 +6,40 @@ Project\PortalBundle\Entity\Post:
         postBody:
             - NotBlank: ~
             - MinLength: {limit: 3}
-            - MaxLength: {limit: 2000}
+            - MaxLength: {limit: 2000}			
+Project\PortalBundle\Entity\User:
+    properties:
+        username:
+            - NotBlank: ~
+            - MinLength: {limit: 3}
+            - MaxLength: {limit: 32}
+        password:
+            - NotBlank: ~
+            - MinLength: {limit: 3}
+            - MaxLength: {limit: 10}
+        email:
+            - NotBlank: ~
+            - MinLength: {limit: 3}
+            - MaxLength: {limit: 15}
+            - Regex: "\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b"
+        gender:
+            - NotBlank: ~
+            - MinLength: {limit: 1}
+            - MaxLength: {limit: 1}
+            - Choice:
+                choices:  [m, f]
+        birthDate:
+            - NotBlank: ~
+            - DateTime: ~
+        city:
+            - NotBlank: ~
+            - MinLength: {limit: 3}
+            - MaxLength: {limit: 20}
+        phone:
+            - Regex: "\b^[0-9]*$\b"
+            - MinLength: {limit: 6}
+            - MaxLength: {limit: 12}
+        city:
+            - NotBlank: ~
+            - MinLength: {limit: 6}
+            - MaxLength: {limit: 15}
