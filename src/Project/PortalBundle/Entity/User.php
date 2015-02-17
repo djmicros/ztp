@@ -242,4 +242,9 @@ class User
     {
         return $this->userId;
     }
+	
+	    public function getSalt()
+    {
+        return $this->salt = 'xxx';
+    }
 }

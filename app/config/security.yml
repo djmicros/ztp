@@ -5,6 +5,7 @@ jms_security_extra:
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+        Project\PortalBundle\Entity\User: md5
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER

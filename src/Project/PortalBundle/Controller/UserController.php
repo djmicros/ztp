@@ -69,7 +69,12 @@ class UserController extends Controller
             if ($userForm->isValid()) {
 
                 $user = $userForm->getData();
-				
+				//KODOWANIE HASLA:
+				$factory = $this->get('security.encoder_factory');
+				$encoder = $factory->getEncoder($user);
+				$password = $encoder->encodePassword('ryanpass', $user->getSalt());
+				$user->setPassword($password);
+				//KODOWANIE HASLA:
 				$em = $this->getDoctrine()->getManager();
 
 					$em->persist($user);
