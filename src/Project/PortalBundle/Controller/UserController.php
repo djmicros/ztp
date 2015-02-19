@@ -98,6 +98,37 @@ class UserController extends Controller
         }
 		
 		return $this->render('ProjectPortalBundle:User:add.html.twig', array('form' => $userForm->createView()));
-    } 
+    }
+
+	public function view_postsAction($user_id)
+    {
+		
+			 /**
+     * @Route("/user/{post_id}/posts")
+	     */
+
+	    $current_user = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:User')
+        ->find($user_id);
+
+    if (!$current_user) {
+        throw $this->createNotFoundException(
+            'No user found for id in the database '.$user_id
+        );
+    }
+	
+				$repository = $this->getDoctrine()
+		->getRepository('ProjectPortalBundle:Post');
+		$posts = $repository->findBy(array('userUser' => $user_id));
+		
+		//$criteria = array('User_user_id' => $user_id);
+		//$posts = $em->getRepository('ProjectPortalBundle:Post')->findBy($criteria);
+		
+
+		return $this->render('ProjectPortalBundle:User:view_posts.html.twig', array('posts' => $posts, 'user' => $current_user));
+
+	
+        //return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user ));
+    }	
 
 }

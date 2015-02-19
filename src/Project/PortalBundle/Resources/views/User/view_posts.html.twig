@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-Welcome, {{ app.user.username }}
+Posty użytkownika {{ user.username }}
 	</br>
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
