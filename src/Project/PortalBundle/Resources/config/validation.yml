@@ -43,3 +43,6 @@ Project\PortalBundle\Entity\User:
             - NotBlank: ~
             - MinLength: {limit: 6}
             - MaxLength: {limit: 15}
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
