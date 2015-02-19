@@ -60,18 +60,20 @@ class PostController extends Controller
             if ($postForm->isValid()) {
 
                 $post = $postForm->getData();
-		
-$post->User_user_id = 1;
 				
 				$em = $this->getDoctrine()->getManager();
+		
+					$user = $this->getUser();
+					$user_id = $user->getUserId();
+					$author_user = $this->getDoctrine()
+					->getRepository('ProjectPortalBundle:User')
+					->find($user_id);
+					$post->setUserUser($author_user);
 
+				
 					$em->persist($post);
 					$em->flush();
 
-					//throw $this->viewAction($object);
-					 //return new Response('News added successfuly');
-				//return new Response('Post created -  id '.$post->getId());
-				//return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $object ));
 				
 				        $request->getSession()->getFlashBag()->add(
             'notice',

@@ -3,7 +3,7 @@
 namespace Project\PortalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Project\PortalBundle\Entity\User;
 
 /**
  * Post
