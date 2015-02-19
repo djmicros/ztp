@@ -3,6 +3,8 @@
 namespace Project\PortalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
 
 /**
  * User
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="User")
  * @ORM\Entity
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var string
@@ -245,6 +247,47 @@ class User
 	
 	    public function getSalt()
     {
-        return $this->salt = 'xxx';
+        return $this->salt = '';
     }
+
+	
+		public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+	
+	
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->userId,
+			$this->password,
+            $this->username,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->userId,
+        ) = unserialize($serialized);
+    }
+	
+	public function isEqualTo(UserInterface $user)
+	{
+		return $this->userId === $user->getId();
+	}
 }

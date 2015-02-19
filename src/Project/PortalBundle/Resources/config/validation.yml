@@ -16,11 +16,11 @@ Project\PortalBundle\Entity\User:
         password:
             - NotBlank: ~
             - MinLength: {limit: 3}
-            - MaxLength: {limit: 10}
+            - MaxLength: {limit: 15}
         email:
             - NotBlank: ~
             - MinLength: {limit: 3}
-            - MaxLength: {limit: 15}
+            - MaxLength: {limit: 20}
             - Regex: "/^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i"
         gender:
             - NotBlank: ~

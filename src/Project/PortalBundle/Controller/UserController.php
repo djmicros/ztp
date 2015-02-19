@@ -72,7 +72,8 @@ class UserController extends Controller
 				//KODOWANIE HASLA:
 				$factory = $this->get('security.encoder_factory');
 				$encoder = $factory->getEncoder($user);
-				$password = $encoder->encodePassword('ryanpass', $user->getSalt());
+				$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+				//$password = md5($user->getPassword());
 				$user->setPassword($password);
 				//KODOWANIE HASLA:
 				$em = $this->getDoctrine()->getManager();
