@@ -7,13 +7,14 @@
 {% endblock %}
 
 {% block body %}
+        Welcome, {{ app.user.username }}!
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
         {{ flashMessage }}
     </div>
 {% endfor %}
 {% for post in posts %}
-    {{ loop.index }} - {{ post.title[:20] ~ '...'}} - <a href="view/{{ loop.index - 1}}">Zobacz więcej...
+    {{ loop.index }} - {{ post.body[:20] ~ '...'}} - <a href="view/{{ loop.index - 1}}">Zobacz więcej...
                     </a>
 	</br>
 {% endfor %}

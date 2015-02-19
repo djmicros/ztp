@@ -13,6 +13,7 @@ class PostType extends AbstractType
 		
         $builder
 			->add('post_body', 'textarea');
+
     }
 
     public function getName()
