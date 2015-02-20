@@ -73,7 +73,6 @@ class UserController extends Controller
 				$factory = $this->get('security.encoder_factory');
 				$encoder = $factory->getEncoder($user);
 				$password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
-				//$password = md5($user->getPassword());
 				$user->setPassword($password);
 				//KODOWANIE HASLA:
 				$em = $this->getDoctrine()->getManager();
@@ -104,7 +103,7 @@ class UserController extends Controller
     {
 		
 			 /**
-     * @Route("/user/{post_id}/posts")
+     * @Route("/user/{user_id}/posts")
 	     */
 
 	    $current_user = $this->getDoctrine()
