@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Project\PortalBundle\Form\Type;
 use Project\PortalBundle\Entity\Post;
@@ -151,6 +152,10 @@ class PostController extends Controller
         );
     }
 	
+	$current_user = $this->getUser();
+	if ($current_user == $post->getUserUser()){
+	
+	
 		$post_tag = $this->getDoctrine()
         ->getRepository('ProjectPortalBundle:PostTags')
         ->findOneBy(array('postPost' => $post_id));
@@ -212,5 +217,11 @@ class PostController extends Controller
         }
 
         return $this->render('ProjectPortalBundle:Post:edit.html.twig', array('form' => $postForm->createView(), 'post_id' => $post_id));
+	}
+	else {
+		        throw new AccessDeniedException(
+            'You are not the author of this post: '.$post_id
+        );
+	}
     }
 }
