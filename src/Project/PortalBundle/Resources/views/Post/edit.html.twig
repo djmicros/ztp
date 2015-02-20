@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <form action="{{ path('project_portal_edit', { 'post_id': post_id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" />
+    </form>
+{% endblock %}

@@ -7,6 +7,9 @@ project_portal_view:
 project_portal_add:
     pattern:  /add
     defaults: { _controller: ProjectPortalBundle:Post:add }
+project_portal_edit:
+    pattern:  /post/{post_id}/edit
+    defaults: { _controller: ProjectPortalBundle:Post:edit }
 project_portal_user:
     pattern:  /user/{user_id}
     defaults: { _controller: ProjectPortalBundle:User:view }
