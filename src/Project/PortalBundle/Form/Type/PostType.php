@@ -13,6 +13,8 @@ class PostType extends AbstractType
 		
         $builder
 			->add('post_body', 'textarea');
+			
+		$builder->add('tag', new TagType());
 
     }
 
@@ -22,3 +24,4 @@ class PostType extends AbstractType
     }
 
 }
+

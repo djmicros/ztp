@@ -4,6 +4,8 @@ namespace Project\PortalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Project\PortalBundle\Entity\User;
+use Project\PortalBundle\Entity\Tag;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -52,6 +54,13 @@ class Post
         $this->setPostDate(new \DateTime());
 
     }
+	
+	    /**
+	 * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag", cascade={"persist"})
+     * @Assert\Type(type="Project\PortalBundle\Entity\Tag")
+     * @Assert\Valid()
+     */
+    protected $tag;
 
     /**
      * Set postBody
@@ -131,5 +140,15 @@ class Post
     public function getUserUser()
     {
         return $this->userUser;
+    }
+	
+	    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    public function setTag(Tag $tag = null)
+    {
+        $this->tag = $tag;
     }
 }

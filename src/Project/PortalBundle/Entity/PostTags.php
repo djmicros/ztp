@@ -24,7 +24,7 @@ class PostTags
     /**
      * @var \Project\PortalBundle\Entity\Post
      *
-     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Post")
+     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Post, cascade={"persist"}")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Post_post_id", referencedColumnName="post_id")
      * })
@@ -34,7 +34,7 @@ class PostTags
     /**
      * @var \Project\PortalBundle\Entity\Tag
      *
-     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag")
+     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag, cascade={"persist"}")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="Tag_tag_id", referencedColumnName="tag_id")
      * })
