@@ -1,3 +1,8 @@
+project_portal_welcome:
+    pattern:  /welcome
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    'ProjectPortalBundle:Default:welcome.html.twig'
 project_portal_index:
     pattern:  /index
     defaults: { _controller: ProjectPortalBundle:Post:index }
@@ -13,6 +18,9 @@ project_portal_edit:
 project_portal_delete:
     pattern:  /post/{post_id}/delete
     defaults: { _controller: ProjectPortalBundle:Post:delete }
+project_portal_users:
+    pattern:  /users
+    defaults: { _controller: ProjectPortalBundle:User:index }
 project_portal_user:
     pattern:  /user/{user_id}
     defaults: { _controller: ProjectPortalBundle:User:view }

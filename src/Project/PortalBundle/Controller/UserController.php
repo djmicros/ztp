@@ -128,6 +128,17 @@ class UserController extends Controller
 
 	
         //return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user ));
+    }
+
+	public function indexAction()
+    {
+
+		$repository = $this->getDoctrine()
+		->getRepository('ProjectPortalBundle:User');
+		
+		$users = $repository->findAll();
+
+		return $this->render('ProjectPortalBundle:User:index.html.twig', array('users' => $users ));
     }	
 
 }

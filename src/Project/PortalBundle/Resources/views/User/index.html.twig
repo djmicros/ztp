@@ -14,8 +14,8 @@ Welcome, {{ app.user.username }}
         {{ flashMessage }}
     </div>
 {% endfor %}
-{% for post in posts %}
-    {{ loop.index }} - {{ post.postBody[:20] ~ '...'}} - <a href="{{ path('project_portal_view', { 'post_id': post.postId }) }}">Zobacz więcej...
+{% for user in users %}
+    {{ loop.index }} - {{ user.username }} - <a href="{{ path('project_portal_user', { 'user_id': user.userId }) }}">Zobacz profil...
                     </a>
 	</br>
 {% endfor %}
