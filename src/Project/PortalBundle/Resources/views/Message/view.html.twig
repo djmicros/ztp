@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <div class="well">
+        <h1> Message from {{ message.idFrom }}  </h1>
+    <div class="well"> <h3>{{ message.msgBody }}</h3> 
+		<small>Sent: {{ message.messageTime|date('Y-m-d') }}</small>
+	</div>
+		<a href="{{ path('project_portal_new_message', { 'user_id': message.idFrom }) }}" class="btn btn-info btn-xs">Reply to this message...</a>
+
+{% endblock %}

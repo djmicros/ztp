@@ -8,8 +8,14 @@
 		<small>Added: {{ post.postDate|date('Y-m-d') }} - Author: {{ post.UserUser.username }} </small>
 	</div>
 	<div class="well">
-		<h2>Likes:</h2>
+		<h2>Likes: {{ likes|length }} </h2>
+			{% for like in likes %}
+				{% if like.UserUser.username == app.user.username %} 
+								<a href="{{ path('project_portal_unlike', { 'post_id': post.postId }) }}" class="btn btn-primary btn-danger">Unlike</a>
+				{% endif %}
+			{% else %}
 			<a href="{{ path('project_portal_like', { 'post_id': post.postId }) }}" class="btn btn-primary btn-large">Like</a>
+			{% endfor %}
 	</div>
 		<h1>Comments:</h1>
 		{% for comment in comments %}

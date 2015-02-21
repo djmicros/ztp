@@ -60,6 +60,11 @@ class Message
     private $userUser;
 
 
+	public function __construct()
+    {
+        $this->setMessageTime(new \DateTime());
+
+    }
 
     /**
      * Set idFrom

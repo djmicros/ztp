@@ -33,6 +33,15 @@ project_portal_like:
 project_portal_unlike:
     pattern:  /post/{post_id}/unlike
     defaults: { _controller: ProjectPortalBundle:Like:delete }
+project_portal_new_message:
+    pattern:  /user/{user_id}/message
+    defaults: { _controller: ProjectPortalBundle:Message:add }
+project_portal_messages:
+    pattern:  /messages
+    defaults: { _controller: ProjectPortalBundle:Message:index }
+project_portal_message_view:
+    pattern:  /message/{message_id}
+    defaults: { _controller: ProjectPortalBundle:Message:view }
 project_portal_users:
     pattern:  /users
     defaults: { _controller: ProjectPortalBundle:User:index }

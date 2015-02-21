@@ -56,9 +56,13 @@ class PostController extends Controller
 		$comments = $this->getDoctrine()
         ->getRepository('ProjectPortalBundle:Comment')
         ->findBy(array('postPost' => $post_id));
+		
+		$likes = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:Like')
+        ->findBy(array('postPost' => $post_id));
 	
 
-        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments ));
+        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments, 'likes' => $likes ));
     }
 	
 	public function addAction(Request $request)

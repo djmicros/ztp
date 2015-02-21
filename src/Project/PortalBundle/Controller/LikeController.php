@@ -63,86 +63,29 @@ class LikeController extends Controller
             }
 
 
-
-
-
-		public function editAction(Request $request, $comment_id)
+		public function deleteAction(Request $request, $post_id)
     {
+		$current_user = $this->getUser();
 		$em = $this->getDoctrine()->getEntityManager();
-		$comment = $em->getRepository('ProjectPortalBundle:Comment')
-        ->find($comment_id);
+		$like = $em->getRepository('ProjectPortalBundle:Like')
+        ->findOneBy(array('postPost' => $post_id, 'userUser' => $current_user));
 
-    if (!$comment) {
+    if (!$like) {
         throw $this->createNotFoundException(
-            'No comment found for id in the database '.$comment_id);
-	}
-	
-	$current_user = $this->getUser();
-	if ($current_user == $comment->getUserUser()){
-	
-	
-        $commentForm = $this->createForm(new Type\CommentType(), $comment);
+            'You did not like it');}
+	$like_user = $like->getUserUser();
 
-				
-        if ($request->isMethod('post')) {
-
-
-            $commentForm->bindRequest($request);
-
-            if ($commentForm->isValid()) {
-
-                $comment = $commentForm->getData();
-						$em->flush();
-					}
-				
-				        $request->getSession()->getFlashBag()->add(
-            'notice',
-            'Your comment was updated!'
-        );
-				
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
+	if ($current_user == $like_user){
 		
-		$posts = $repository->findAll();
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
-
-            }
-
-
-
-        return $this->render('ProjectPortalBundle:Comment:edit.html.twig', array('form' => $commentForm->createView(), 'comment_id' => $comment_id));
-	}
-	else {
-		        throw new AccessDeniedException(
-            'You are not the author of this comment: '.$comment_id
-        );
-	}
-    }
-
-		public function deleteAction(Request $request, $comment_id)
-    {
-		$em = $this->getDoctrine()->getEntityManager();
-		$comment = $em->getRepository('ProjectPortalBundle:Comment')
-        ->find($comment_id);
-
-    if (!$comment) {
-        throw $this->createNotFoundException(
-            'No comment found for id in the database '.$comment_id);
-	}
-	
-	$current_user = $this->getUser();
-	if ($current_user == $comment->getUserUser()){
-		
-		if ($request->isMethod('post')) {
 			
 		$em = $this->getDoctrine()->getEntityManager();
-		$em->remove($comment);
+		$em->remove($like);
 		$em->flush();
 		
 		$request->getSession()->getFlashBag()->add(
             'notice',
-            'Comment deleted!'
+            'Unliked!'
         );
 		
 		$repository = $this->getDoctrine()
@@ -152,13 +95,13 @@ class LikeController extends Controller
 
 		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
 
-		}
+
 
         return $this->render('ProjectPortalBundle:Comment:delete.html.twig', array('comment' => $comment, 'comment_id' => $comment_id ));
 	}
 		else {
 		        throw new AccessDeniedException(
-            'You are not the author of this comment: '.$comment_id
+            'You are not the liking person!'
         );
 	}
     }
