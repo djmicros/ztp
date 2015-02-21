@@ -56,7 +56,12 @@ class Comment
     private $userUser;
 
 
+	    public function __construct()
+    {
+        $this->setCommentDate(new \DateTime());
 
+    }
+	
     /**
      * Set commentBody
      *
