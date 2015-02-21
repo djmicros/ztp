@@ -7,6 +7,10 @@
     <div class="well"> <h3>{{ post.postBody }}</h3> 
 		<small>Added: {{ post.postDate|date('Y-m-d') }} - Author: {{ post.UserUser.username }} </small>
 	</div>
+	<div class="well">
+		<h2>Likes:</h2>
+			<a href="{{ path('project_portal_like', { 'post_id': post.postId }) }}" class="btn btn-primary btn-large">Like</a>
+	</div>
 		<h1>Comments:</h1>
 		{% for comment in comments %}
     <i>{{ comment.commentBody }}</i> - Author: {{ comment.UserUser.username }} 

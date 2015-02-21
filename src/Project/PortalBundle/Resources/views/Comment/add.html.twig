@@ -2,8 +2,9 @@
 
 
 {% block body %}
+<h1>Add Comment:</h1>
     <form action="{{ path('project_portal_comment', { 'post_id': post_id }) }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
-        <input type="submit" />
+        <input type="submit" class="btn btn-success btn-xs" />
     </form>
 {% endblock %}

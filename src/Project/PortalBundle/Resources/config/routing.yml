@@ -27,6 +27,12 @@ project_portal_comment_edit:
 project_portal_comment_delete:
     pattern:  /comment/{comment_id}/delete
     defaults: { _controller: ProjectPortalBundle:Comment:delete }
+project_portal_like:
+    pattern:  /post/{post_id}/like
+    defaults: { _controller: ProjectPortalBundle:Like:add }
+project_portal_unlike:
+    pattern:  /post/{post_id}/unlike
+    defaults: { _controller: ProjectPortalBundle:Like:delete }
 project_portal_users:
     pattern:  /users
     defaults: { _controller: ProjectPortalBundle:User:index }
