@@ -18,14 +18,14 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="post_body", type="text", nullable=false)
+     * @ORM\Column(name="post_body", type="text")
      */
     private $postBody;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="post_date", type="datetime", nullable=false)
+     * @ORM\Column(name="post_date", type="datetime")
      */
     private $postDate;
 

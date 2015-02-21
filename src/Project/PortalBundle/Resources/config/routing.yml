@@ -10,6 +10,9 @@ project_portal_add:
 project_portal_edit:
     pattern:  /post/{post_id}/edit
     defaults: { _controller: ProjectPortalBundle:Post:edit }
+project_portal_delete:
+    pattern:  /post/{post_id}/delete
+    defaults: { _controller: ProjectPortalBundle:Post:delete }
 project_portal_user:
     pattern:  /user/{user_id}
     defaults: { _controller: ProjectPortalBundle:User:view }

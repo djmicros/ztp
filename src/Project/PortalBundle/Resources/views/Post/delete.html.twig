@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <div class="well">
+		<p>
+        <h1> Delete post: </h1>
+		<p> {{ post.postBody }} </p>
+		<form action="{{ path('project_portal_delete', { 'post_id': post_id }) }}" method="post" onclick="return confirm('Are you sure?')">
+		        <input type="submit" value="Delete this post!"/>
+    </form>
+	</div>
+{% endblock %}

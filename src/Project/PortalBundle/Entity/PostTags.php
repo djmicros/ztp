@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PostTags
  *
- * @ORM\Table(name="Post_Tags", indexes={@ORM\Index(name="fk_Post_Tags_Tag1_idx", columns={"Tag_tag_id"}), @ORM\Index(name="fk_Post_Tags_Post1_idx", columns={"Post_post_id"})})
+ * @ORM\Table(name="Post_Tags", indexes={@ORM\Index(name="fk_Post_Tags_Tag1_idx", columns={"Tag_tag_id"}, onDelete="SET NULL"), @ORM\Index(name="fk_Post_Tags_Post1_idx", columns={"Post_post_id"}, onDelete="SET NULL")})
  * @ORM\Entity
  */
 class PostTags
@@ -24,9 +24,9 @@ class PostTags
     /**
      * @var \Project\PortalBundle\Entity\Post
      *
-     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Post, cascade={"persist"}")
+     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Post", onDelete="CASCADE")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Post_post_id", referencedColumnName="post_id")
+     *   @ORM\JoinColumn(name="Post_post_id", referencedColumnName="post_id", onDelete="CASCADE")
      * })
      */
     private $postPost;
@@ -34,9 +34,9 @@ class PostTags
     /**
      * @var \Project\PortalBundle\Entity\Tag
      *
-     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag, cascade={"persist"}")
+     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Tag_tag_id", referencedColumnName="tag_id")
+     *   @ORM\JoinColumn(name="Tag_tag_id", referencedColumnName="tag_id", nullable=true, cascade={"all"}, onDelete="CASCADE")
      * })
      */
     private $tagTag;
