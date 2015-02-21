@@ -3,10 +3,24 @@
 
 {% block body %}
     <div class="well">
-		<p>
-        <h1> Tytuł Postu:  </h1>
-		</br>
-		Treść Postu: {{ post.postBody }}
-		</p>
+        <h1> Post Content:  </h1>
+    <div class="well"> <h3>{{ post.postBody }}</h3> 
+		<small>Added: {{ post.postDate|date('Y-m-d') }} - Author: {{ post.UserUser.username }} </small>
+	</div>
+		<h1>Comments:</h1>
+		{% for comment in comments %}
+    <i>{{ comment.commentBody }}</i> - Author: {{ comment.UserUser.username }} 
+	
+	{% if comment.UserUser.username == app.user.username %}
+		<a href="{{ path('project_portal_comment_edit', { 'comment_id': comment.commentId }) }}" class="btn btn-info btn-xs">Edit this comment...</a>
+		<a href="{{ path('project_portal_comment_delete', { 'comment_id': comment.commentId }) }}" class="btn btn-danger btn-xs">Delete this comment...</a>
+	{% endif %}
+	
+	</br>
+	</br>
+{% endfor %}
+	<a href="{{ path('project_portal_comment', { 'post_id': post.postId }) }}" class="btn btn-primary btn-large">
+      Add your comment...
+    </a>
 	</div>
 {% endblock %}

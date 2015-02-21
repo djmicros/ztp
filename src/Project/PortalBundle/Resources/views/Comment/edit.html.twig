@@ -1,0 +1,10 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+<h1>Edit Comment:</h1>
+    <form action="{{ path('project_portal_comment_edit', { 'comment_id': comment_id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-success btn-xs" />
+    </form>
+{% endblock %}

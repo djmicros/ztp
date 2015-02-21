@@ -2,8 +2,11 @@
 
 
 {% block body %}
-    <form action="{{ path('project_portal_add') }}" method="post" {{ form_enctype(form) }}>
+<h1>Add Post:</h1>
+    <form action="{{ path('project_portal_add') }}" method="post" {{ form_enctype(form) }} role="form">
+	<div class="form-group">
         {{ form_widget(form) }}
-        <input type="submit" />
+	</div>
+        <input type="submit" class="btn btn-success btn-xs"/>
     </form>
 {% endblock %}

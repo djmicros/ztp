@@ -15,6 +15,8 @@ use Project\PortalBundle\Form\Type;
 use Project\PortalBundle\Entity\Post;
 use Project\PortalBundle\Entity\Tag;
 use Project\PortalBundle\Entity\PostTags;
+use Project\PortalBundle\Entity\User;
+use Project\PortalBundle\Entity\Comment;
 
 class PostController extends Controller
 {
@@ -43,6 +45,7 @@ class PostController extends Controller
 	    $current_post = $this->getDoctrine()
         ->getRepository('ProjectPortalBundle:Post')
         ->find($post_id);
+		
 
     if (!$current_post) {
         throw $this->createNotFoundException(
@@ -50,8 +53,12 @@ class PostController extends Controller
         );
     }
 	
+		$comments = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:Comment')
+        ->findBy(array('postPost' => $post_id));
+	
 
-        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post ));
+        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments ));
     }
 	
 	public function addAction(Request $request)
@@ -126,7 +133,7 @@ class PostController extends Controller
 		
 		$posts = $repository->findAll();
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts));
 
 	
 				 /**

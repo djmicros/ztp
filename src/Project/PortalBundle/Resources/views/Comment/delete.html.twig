@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body %}
+    <div class="well">
+		<p>
+        <h1> Delete comment: </h1>
+		<p> {{ comment.commentBody }} </p>
+		<form action="{{ path('project_portal_comment_delete', { 'comment_id': comment_id }) }}" method="post" onclick="return confirm('Are you sure?')">
+		        <input type="submit" class="btn btn-danger btn-xs" value="Delete this comment!"/>
+    </form>
+	</div>
+{% endblock %}

@@ -12,9 +12,9 @@ class PostType extends AbstractType
     {
 		
         $builder
-			->add('post_body', 'textarea');
+			->add('post_body', 'textarea', array('label' => "Post:"));
 			
-		$builder->add('tag', new TagType());
+		$builder->add('tag', new TagType(), array('label' => false));
 
     }
 

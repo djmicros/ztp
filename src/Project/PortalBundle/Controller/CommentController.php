@@ -85,70 +85,39 @@ class CommentController extends Controller
 
         return $this->render('ProjectPortalBundle:Comment:add.html.twig', array('form' => $commentForm->createView(), 'post_id' => $post_id));
     }
-	/**
-		public function editAction(Request $request, $post_id)
+
+		public function editAction(Request $request, $comment_id)
     {
 		$em = $this->getDoctrine()->getEntityManager();
-		$post = $em->getRepository('ProjectPortalBundle:Post')
-        ->find($post_id);
+		$comment = $em->getRepository('ProjectPortalBundle:Comment')
+        ->find($comment_id);
 
-    if (!$post) {
+    if (!$comment) {
         throw $this->createNotFoundException(
-            'No post found for id in the database '.$post_id
-        );
-    }
+            'No comment found for id in the database '.$comment_id);
+	}
 	
 	$current_user = $this->getUser();
-	if ($current_user == $post->getUserUser()){
+	if ($current_user == $comment->getUserUser()){
 	
 	
-		$post_tag = $this->getDoctrine()
-        ->getRepository('ProjectPortalBundle:PostTags')
-        ->findOneBy(array('postPost' => $post_id));
-		$tag = $post_tag->getTagTag();
-		$post->setTag($tag);
-        $postForm = $this->createForm(new Type\EditPostType(), $post);
-		$old_tag = $tag;
+        $commentForm = $this->createForm(new Type\CommentType(), $comment);
 
 				
         if ($request->isMethod('post')) {
 
 
-            $postForm->bindRequest($request);
+            $commentForm->bindRequest($request);
 
-            if ($postForm->isValid()) {
+            if ($commentForm->isValid()) {
 
-                $post = $postForm->getData();
-
-						$tag_name = $tag->getTagName();
-						
-						
-					$existing_tag = $this->getDoctrine()
-					->getRepository('ProjectPortalBundle:Tag')
-					->findOneByTagName($tag_name);
-					
-					if (!$existing_tag) {
-						$new_tag = new Tag();
-						$new_tag->setTagName($tag_name);
+                $comment = $commentForm->getData();
 						$em->flush();
 					}
-					
-					if ($existing_tag != $old_tag){
-						$post_tag = new PostTags();
-						$post_tag->setTagTag($new_tag);
-						$post_tag->setPostPost($post);
-						$em->flush();
-					}
-
-					
-					$em->persist($post);	
-					$em->flush();
-			
-
 				
 				        $request->getSession()->getFlashBag()->add(
             'notice',
-            'Your post was updated!'
+            'Your comment was updated!'
         );
 				
 		$repository = $this->getDoctrine()
@@ -160,43 +129,40 @@ class CommentController extends Controller
 
             }
 
-        }
 
-        return $this->render('ProjectPortalBundle:Post:edit.html.twig', array('form' => $postForm->createView(), 'post_id' => $post_id));
+
+        return $this->render('ProjectPortalBundle:Comment:edit.html.twig', array('form' => $commentForm->createView(), 'comment_id' => $comment_id));
 	}
 	else {
 		        throw new AccessDeniedException(
-            'You are not the author of this post: '.$post_id
+            'You are not the author of this comment: '.$comment_id
         );
 	}
     }
-	
-		public function deleteAction(Request $request, $post_id)
+
+		public function deleteAction(Request $request, $comment_id)
     {
-		
+		$em = $this->getDoctrine()->getEntityManager();
+		$comment = $em->getRepository('ProjectPortalBundle:Comment')
+        ->find($comment_id);
 
-	    $current_post = $this->getDoctrine()
-        ->getRepository('ProjectPortalBundle:Post')
-        ->find($post_id);
-
-    if (!$current_post) {
+    if (!$comment) {
         throw $this->createNotFoundException(
-            'No post found for id in the database '.$post_id
-        );
-    }
-
-		$current_user = $this->getUser();
-	if ($current_user == $current_post->getUserUser()){
+            'No comment found for id in the database '.$comment_id);
+	}
+	
+	$current_user = $this->getUser();
+	if ($current_user == $comment->getUserUser()){
 		
 		if ($request->isMethod('post')) {
 			
 		$em = $this->getDoctrine()->getEntityManager();
-		$em->remove($current_post);
+		$em->remove($comment);
 		$em->flush();
 		
 		$request->getSession()->getFlashBag()->add(
             'notice',
-            'Post deleted!'
+            'Comment deleted!'
         );
 		
 		$repository = $this->getDoctrine()
@@ -207,19 +173,14 @@ class CommentController extends Controller
 		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
 
 		}
-	
 
-	
-	
-	
-
-        return $this->render('ProjectPortalBundle:Post:delete.html.twig', array('post' => $current_post, 'post_id' => $post_id ));
+        return $this->render('ProjectPortalBundle:Comment:delete.html.twig', array('comment' => $comment, 'comment_id' => $comment_id ));
 	}
 		else {
 		        throw new AccessDeniedException(
-            'You are not the author of this post: '.$post_id
+            'You are not the author of this comment: '.$comment_id
         );
 	}
     }
-	*/
+
 }

@@ -1,13 +1,21 @@
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/structure.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/body.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/exception.css') }}" />
-{% endblock %}
 
 {% block body %}
+<div class="container">
+<div class="hero-unit">
+  <h1>Welcome</h1>
+  <p>Register or Login to start!</p>
+  <p>
+    <a href="./register" class="btn btn-primary btn-large">
+      Register
+    </a>
+  </p>
     <p>
-        WELCOMEEE!!!
-    </p>
+    <a href="./login" class="btn btn-primary btn-large">
+      Login
+    </a>
+  </p>
+</div>
+</div>
 {% endblock %}

@@ -12,7 +12,7 @@ class CommentType extends AbstractType
     {
 		
         $builder
-			->add('comment_body', 'textarea');
+			->add('comment_body', 'textarea', array('label' => false));
 
     }
 

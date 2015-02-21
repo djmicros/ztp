@@ -1,22 +1,24 @@
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/structure.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/body.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/exception.css') }}" />
-{% endblock %}
-
 {% block body %}
-Welcome, {{ app.user.username }}
+<h1> Newest Posts: </h1>
 	</br>
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
         {{ flashMessage }}
     </div>
 {% endfor %}
+<table class="table">
+<tr>
+	<td><strong>Author</strong></td>
+	<td><strong>Post</strong></td>
+</tr>
 {% for post in posts %}
-    {{ loop.index }} - {{ post.postBody[:20] ~ '...'}} - <a href="{{ path('project_portal_view', { 'post_id': post.postId }) }}">Zobacz więcej...
+<tr>
+    <td><a href="{{ path('project_portal_user', { 'user_id': post.UserUser.userId }) }}">{{ post.UserUser.username }}</td> <td> <a href="{{ path('project_portal_view', { 'post_id': post.postId }) }}"> {{ post.postBody[:100] ~ '...'}} </td>
                     </a>
-	</br>
+</tr>
 {% endfor %}
+</ul>
+</table>
 {% endblock %}

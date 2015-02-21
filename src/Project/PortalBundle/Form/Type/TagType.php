@@ -10,7 +10,7 @@ class TagType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('tag_name', 'text', array('required' => false));
+        $builder->add('tag_name', 'text', array('required' => false, 'label' => "Tag:"));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -21,6 +21,12 @@ project_portal_delete:
 project_portal_comment:
     pattern:  /post/{post_id}/comment
     defaults: { _controller: ProjectPortalBundle:Comment:add }
+project_portal_comment_edit:
+    pattern:  /comment/{comment_id}/edit
+    defaults: { _controller: ProjectPortalBundle:Comment:edit }
+project_portal_comment_delete:
+    pattern:  /comment/{comment_id}/delete
+    defaults: { _controller: ProjectPortalBundle:Comment:delete }
 project_portal_users:
     pattern:  /users
     defaults: { _controller: ProjectPortalBundle:User:index }
