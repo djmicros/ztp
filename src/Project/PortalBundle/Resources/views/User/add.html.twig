@@ -1,9 +1,12 @@
 {% extends '::base.html.twig' %}
 
-
 {% block body %}
+
+<div class="col-md-offset-5 col-md-3">
+	<h1> Register </h1>
     <form action="{{ path('project_portal_register') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
+        {{ form_widget(form)  }}
         <input type="submit" />
     </form>
+</div>
 {% endblock %}

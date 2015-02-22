@@ -5,13 +5,35 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Portal - Projekt ZTP - Adrian Kuciel{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 		<link rel="stylesheet" href="{{ asset('bundles/framework/css/bootstrap.css') }}" />	
-		<script src="{{ asset('bundles/framework/js/bootstrap.min.js') }}" ></script>
 		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+		<script src="{{ asset('bundles/framework/js/bootstrap.min.js') }}" ></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     </head>
     <body>
-       <div class="container"> {% block body %}{% endblock %} </div>
-        {% block javascripts %}{% endblock %}
+			<div class="navigation">
+				<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    .				<ul class="nav navbar-nav">
+						{% if app.user.username is defined %}
+							<li> <a href="{{ path('project_portal_user', { 'user_id': app.user.userId }) }}">Logged in as {{ app.user.username }}</a> </li>
+						{% endif %}
+						<li> <a href="{{ path('project_portal_add') }}">Add Post</a> </li>
+						<li> <a href="{{ path('project_portal_messages') }}">My Messages</a> </li>
+						<li> <a href="{{ path('project_portal_users') }}">Users</a> </li>
+						<li> <a href="{{ path('project_portal_index') }}">Posts</a> </li>
+						{% if app.user.username is defined %}
+							<li> <a href="{{ path('logout') }}">Logout</a> </li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+		       <div class="container"> 
+	   {% block body %}
+
+	   
+	   {% endblock %} 
+	   </div>
+        {% block javascripts %}
+{% endblock %}
     </body>
 </html>

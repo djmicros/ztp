@@ -1,12 +1,76 @@
 {% extends '::base.html.twig' %}
-
-
 {% block body %}
-    <div class="well">
-		<p>
-        <h1> Imie Usera: {{ user.username }}! </h1>
-		</br>
-		E-mail usera: {{ user.email }}
-		</p>
-	</div>
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+<div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+   
+   
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">{{ user.username }}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> </div>
+                
+                <div class=" col-md-9 col-lg-9 "> 
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Username:</td>
+                        <td>{{ user.username }}</td>
+                      </tr>
+                      <tr>
+                        <td>Date of Birth</td>
+                        <td>{{ user.birthDate|date }}</td>
+                      </tr>
+                   
+                         <tr>
+                             <tr>
+                        <td>Gender</td>
+                        <td>{% if user.gender == "m" %}
+							Male
+							{% else %}
+							Female
+						{% endif %}</td>
+                      </tr>
+                        <tr>
+                        <td>City</td>
+                        <td>{{ user.city }}</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                      </tr>
+                        <td>Phone Number</td>
+                        <td>{{ user.phone }}
+                        </td>
+                           
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                  
+                  <a href="{{ path('project_portal_new_message', { 'user_id': user.userId }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-envelope"></i> Send message to this user</a>
+                  <a href="{{ path('project_portal_user_posts', { 'user_id': user.userId }) }}" class="btn btn-primary">See posts of this user</a>
+                </div>
+              </div>
+            </div>
+                 <div class="panel-footer">
+				{% if friendship == 0 %} 
+					 <a href="{{ path('project_portal_friend', { 'user_id': user.userId }) }}" class="btn btn-primary">Add friend</a> - You and {{ user.username }} are not friends 
+				{% else %}
+					<a href="{{ path('project_portal_unfriend', { 'user_id': user.userId }) }}" class="btn btn-primary btn-danger">Unfriend</a> - You and {{ user.username }} are friends 
+				{% endif %}
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

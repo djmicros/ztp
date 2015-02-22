@@ -7,16 +7,29 @@
 {% endblock %}
 
 {% block body %}
-Posty użytkownika {{ user.username }}
+<h1>{{ user.username }}'s posts:</h1>
 	</br>
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
         {{ flashMessage }}
     </div>
 {% endfor %}
-{% for post in posts %}
-    {{ loop.index }} - {{ post.postBody[:20] ~ '...'}} - <a href="post/{{ loop.index}}">Zobacz więcej...
-                    </a>
-	</br>
-{% endfor %}
+<div class="container">
+    <ul class="timeline">
+	{% for post in posts %}
+        <li>
+          <div class="timeline-badge"><i class="glyphicon glyphicon-console"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">{{ post.UserUser.username }} says:</h4>
+              <p><a href="{{ path('project_portal_view', { 'post_id': post.postId }) }}"> {{ post.postBody[:120] ~ '...'}} </a></p>
+            </div>
+            <div class="timeline-body">
+              <p>dsfsdfdsfdsfdsf</p>
+            </div>
+          </div>
+        </li>
+    {% endfor %}   
+    </ul>
+</div>
 {% endblock %}

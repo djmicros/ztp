@@ -53,12 +53,7 @@ class LikeController extends Controller
             'Your like was saved!'
         );
 				
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
-		
-		$posts = $repository->findAll();
-
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
 
             }
 
@@ -93,7 +88,7 @@ class LikeController extends Controller
 		
 		$posts = $repository->findAll();
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+		return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
 
 
 

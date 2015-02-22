@@ -12,7 +12,11 @@ class CommentType extends AbstractType
     {
 		
         $builder
-			->add('comment_body', 'textarea', array('label' => false));
+			->add('comment_body', 'textarea', array( 
+            'label' => false,
+            'attr'   =>  array(
+                'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Your comment...')
+            ));
 
     }
 

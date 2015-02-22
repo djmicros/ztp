@@ -60,9 +60,12 @@ class PostController extends Controller
 		$likes = $this->getDoctrine()
         ->getRepository('ProjectPortalBundle:Like')
         ->findBy(array('postPost' => $post_id));
+		
+		$comment = new Comment();
+        $commentForm = $this->createForm(new Type\CommentType(), $comment);
 	
 
-        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments, 'likes' => $likes ));
+        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments, 'likes' => $likes, 'comment_form' => $commentForm->createView() ));
     }
 	
 	public function addAction(Request $request)

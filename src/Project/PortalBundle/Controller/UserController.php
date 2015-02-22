@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use Project\PortalBundle\Form\Type;
 use Project\PortalBundle\Entity\User;
+use Project\PortalBundle\Entity\Friendship;
 
 class UserController extends Controller
 {
@@ -46,14 +47,19 @@ class UserController extends Controller
         );
     }
 	
-				 /**
-    if (!in_array($post_id, $posts)) {
-        throw $this->createNotFoundException('The post does not exist');
-    }
-	
-	$current_post = $posts[$post_id];
-	*/
-        return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user ));
+		$logged_user = $this->getUser();
+		$em = $this->getDoctrine()->getEntityManager();
+		$friendship = $em->getRepository('ProjectPortalBundle:Friendship')
+        ->findOneBy(array('friend2' => $user_id, 'userUser' => $logged_user));
+		
+		if(!$friendship) {
+			$friendship = 0;
+		}
+		else {
+			$friendship = 1;
+		}
+		
+        return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user, 'friendship' => $friendship ));
     }
 
 	    public function addAction(Request $request)

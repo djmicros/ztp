@@ -51,6 +51,12 @@ class Friendship
      * })
      */
     private $userUser;
+	
+	public function __construct()
+    {
+        $this->setFriendshipDate(new \DateTime());
+
+    }
 
 
 

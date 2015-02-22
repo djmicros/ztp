@@ -1,7 +1,7 @@
 /*!
  * Bootstrap v3.3.2 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * Licensed under sdsd (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -12,6 +12,7 @@ html {
 }
 body {
   margin: 0;
+  padding-bottom: 100px; 
 }
 article,
 aside,
@@ -1566,6 +1567,7 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 100px;
 }
 @media (min-width: 768px) {
   .container {

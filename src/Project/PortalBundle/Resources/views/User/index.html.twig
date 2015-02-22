@@ -7,16 +7,24 @@
 {% endblock %}
 
 {% block body %}
-Welcome, {{ app.user.username }}
-	</br>
+<h1> Users: </h1>
+</br>
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
         {{ flashMessage }}
     </div>
 {% endfor %}
+
+<table class="table">
+<tr>
+	<td><strong>User ID</strong></td>
+	<td><strong>Username</strong></td>
+</tr>
 {% for user in users %}
-    {{ loop.index }} - {{ user.username }} - <a href="{{ path('project_portal_user', { 'user_id': user.userId }) }}">Zobacz profil...
-                    </a>
-	</br>
+<tr>
+    <td>{{ user.userId }}</td> 
+	<td> <a href="{{ path('project_portal_user', { 'user_id': user.userId }) }}"> {{ user.username }}</a></td>
+</tr>
 {% endfor %}
+</table>
 {% endblock %}

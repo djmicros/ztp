@@ -62,13 +62,8 @@ class CommentController extends Controller
             'notice',
             'Your comment was saved!'
         );
-				
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
-		
-		$posts = $repository->findAll();
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+		return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
 
 	
 				 /**
@@ -145,7 +140,8 @@ class CommentController extends Controller
 		$em = $this->getDoctrine()->getEntityManager();
 		$comment = $em->getRepository('ProjectPortalBundle:Comment')
         ->find($comment_id);
-
+		$post = $comment->getPostPost();
+		$post_id = $post->getPostId();
     if (!$comment) {
         throw $this->createNotFoundException(
             'No comment found for id in the database '.$comment_id);
@@ -165,12 +161,7 @@ class CommentController extends Controller
             'Comment deleted!'
         );
 		
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
-		
-		$posts = $repository->findAll();
-
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
 
 		}
 

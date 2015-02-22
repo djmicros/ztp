@@ -7,16 +7,24 @@
 {% endblock %}
 
 {% block body %}
-Posts for tag: {{tag.tagName}} :
+<h1>Posts for tag "{{tag.tagName}}":</h1>
 	</br>
 {% for flashMessage in app.session.flashbag.get('notice') %}
     <div class="flash-notice">
         {{ flashMessage }}
     </div>
 {% endfor %}
+<table class="table">
+<tr>
+	<td><strong>Author</strong></td>
+	<td><strong>Post</strong></td>
+</tr>
 {% for post in posts %}
-    {{ loop.index }} - {{ post.postBody[:20] ~ '...'}} - <a href="../post/{{ post.postId}}">Zobacz więcej...
+<tr>
+    <td><a href="{{ path('project_portal_user', { 'user_id': post.UserUser.userId }) }}">{{ post.UserUser.username }}</td> <td> <a href="{{ path('project_portal_view', { 'post_id': post.postId }) }}"> {{ post.postBody[:100] ~ '...'}} </td>
                     </a>
-	</br>
+</tr>
 {% endfor %}
+</ul>
+</table>
 {% endblock %}

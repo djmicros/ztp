@@ -57,6 +57,12 @@ project_portal_tag_view:
 project_portal_register:
     pattern:  /register
     defaults: { _controller: ProjectPortalBundle:User:add }
+project_portal_friend:
+    pattern:  /user/{user_id}/friend
+    defaults: { _controller: ProjectPortalBundle:Friendship:add }
+project_portal_unfriend:
+    pattern:  /user/{user_id}/unfriend
+    defaults: { _controller: ProjectPortalBundle:Friendship:delete }
 login:
     pattern:   /login
     defaults: { _controller: ProjectPortalBundle:Security:login }
