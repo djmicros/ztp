@@ -28,7 +28,7 @@ use Project\PortalBundle\Entity\Like;
  
 class LikeController extends Controller
 {
-	    /**
+        /**
      * Adds Like
      *
      * @param integer $post_id      id
@@ -36,43 +36,43 @@ class LikeController extends Controller
      *
      * @return void
      */
-	 
-	public function addAction(Request $request, $post_id)
+     
+    public function addAction(Request $request, $post_id)
     {
 
         $like = new Like();
 
-		
-			$current_post = $this->getDoctrine()
-			->getRepository('ProjectPortalBundle:Post')
-			->findOneByPostId($post_id);
-			
-		if (!$current_post){
-			throw $this->createNotFoundException('The post does not exist');
-		}
-				
-				$em = $this->getDoctrine()->getManager();
-		
-					$current_user = $this->getUser();
+        
+            $current_post = $this->getDoctrine()
+            ->getRepository('ProjectPortalBundle:Post')
+            ->findOneByPostId($post_id);
+            
+        if (!$current_post) {
+            throw $this->createNotFoundException('The post does not exist');
+        }
+                
+                $em = $this->getDoctrine()->getManager();
+        
+                    $current_user = $this->getUser();
 
-					$like->setUserUser($current_user);
-					$like->setPostPost($current_post);
-					
-					$em->persist($like);
-					$em->flush();
+                    $like->setUserUser($current_user);
+                    $like->setPostPost($current_post);
+                    
+                    $em->persist($like);
+                    $em->flush();
 
-				
+                
 
-				
-				        $request->getSession()->getFlashBag()->add(
-            'notice',
-            'Your like was saved!'
-        );
-				
-return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
+                
+                        $request->getSession()->getFlashBag()->add(
+                            'notice',
+                            'Your like was saved!'
+                        );
+                
+                        return $this->redirect($this->generateUrl("project_portal_view", array('post_id' => $post_id)));
 
     }
-		    /**
+            /**
      * Removes Like
      *
      * @param integer $post_id      id
@@ -82,47 +82,45 @@ return $this->redirect($this->generateUrl("project_portal_view",array('post_id' 
      */
 
 
-		public function deleteAction(Request $request, $post_id)
-    {
-		$current_user = $this->getUser();
-		$em = $this->getDoctrine()->getEntityManager();
-		$like = $em->getRepository('ProjectPortalBundle:Like')
+        public function deleteAction(Request $request, $post_id)
+        {
+        $current_user = $this->getUser();
+        $em = $this->getDoctrine()->getEntityManager();
+        $like = $em->getRepository('ProjectPortalBundle:Like')
         ->findOneBy(array('postPost' => $post_id, 'userUser' => $current_user));
 
-    if (!$like) {
-        throw $this->createNotFoundException(
-            'You did not like it');}
-	$like_user = $like->getUserUser();
+        if (!$like) {
+            throw $this->createNotFoundException(
+                'You did not like it'
+            );
+        }
+        $like_user = $like->getUserUser();
 
-	if ($current_user == $like_user){
-		
+        if ($current_user == $like_user) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->remove($like);
+            $em->flush();
+        
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+                'Unliked!'
+            );
+        
+            $repository = $this->getDoctrine()
+            ->getRepository('ProjectPortalBundle:Post');
+        
+            $posts = $repository->findAll();
 
-			
-		$em = $this->getDoctrine()->getEntityManager();
-		$em->remove($like);
-		$em->flush();
-		
-		$request->getSession()->getFlashBag()->add(
-            'notice',
-            'Unliked!'
-        );
-		
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
-		
-		$posts = $repository->findAll();
-
-		return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
-
+            return $this->redirect($this->generateUrl("project_portal_view", array('post_id' => $post_id)));
 
 
-        return $this->render('ProjectPortalBundle:Comment:delete.html.twig', array('comment' => $comment, 'comment_id' => $comment_id ));
-	}
-		else {
-		        throw new AccessDeniedException(
-            'You are not the liking person!'
-        );
-	}
-    }
 
+            return $this->render('ProjectPortalBundle:Comment:delete.html.twig', array(
+            'comment' => $comment, 'comment_id' => $comment_id ));
+        } else {
+                throw new AccessDeniedException(
+                    'You are not the liking person!'
+                );
+        }
+        }
 }

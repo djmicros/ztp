@@ -17,7 +17,6 @@ return array(
     'Sensio\\Bundle\\DistributionBundle' => array($vendorDir . '/sensio/distribution-bundle'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
-    'Monolog' => array($vendorDir . '/monolog/monolog/src'),
     'Metadata\\' => array($vendorDir . '/jms/metadata/src'),
     'JMS\\SecurityExtraBundle' => array($vendorDir . '/jms/security-extra-bundle'),
     'JMS\\DiExtraBundle' => array($vendorDir . '/jms/di-extra-bundle'),

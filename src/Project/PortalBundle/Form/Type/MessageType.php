@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class MessageType extends AbstractType
 {
-		    /**
+            /**
      * Message form
      *
      * @param FormBuilderInterface $builder builder
@@ -23,12 +23,12 @@ class MessageType extends AbstractType
      *
      * @return void
      */
-	 
+     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		
+        
         $builder
-			->add('msg_body', 'textarea', array( 
+            ->add('msg_body', 'textarea', array(
             'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Write your message...')
@@ -40,6 +40,4 @@ class MessageType extends AbstractType
     {
         return 'PortalBundleFormTypeMessageType';
     }
-
 }
-

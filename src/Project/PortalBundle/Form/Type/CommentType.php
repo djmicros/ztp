@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  
 class CommentType extends AbstractType
 {
-	    /**
+        /**
      * Comment form
      *
      * @param FormBuilderInterface $builder builder
@@ -23,12 +23,12 @@ class CommentType extends AbstractType
      *
      * @return void
      */
-	 
+     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		
+        
         $builder
-			->add('comment_body', 'textarea', array( 
+            ->add('comment_body', 'textarea', array(
             'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Your comment...')
@@ -40,6 +40,4 @@ class CommentType extends AbstractType
     {
         return 'PortalBundleFormTypeCommentType';
     }
-
 }
-

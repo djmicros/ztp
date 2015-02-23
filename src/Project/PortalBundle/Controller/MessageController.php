@@ -29,7 +29,7 @@ use Project\PortalBundle\Entity\Message;
  
 class MessageController extends Controller
 {
-	    /**
+        /**
      * Adds message
      *
      * @param integer $user_id      id
@@ -37,112 +37,112 @@ class MessageController extends Controller
      *
      * @return void
      */
-	public function addAction(Request $request, $user_id)
+    public function addAction(Request $request, $user_id)
     {
 
         $message = new Message();
-		$messageForm = $this->createForm(new Type\MessageType(), $message);
+        $messageForm = $this->createForm(new Type\MessageType(), $message);
 
-		
-			$to_user = $this->getDoctrine()
-			->getRepository('ProjectPortalBundle:User')
-			->findOneByUserId($user_id);
-			
-		if (!$to_user){
-			throw $this->createNotFoundException('User does not exist');
-		}
-				
+        
+            $to_user = $this->getDoctrine()
+            ->getRepository('ProjectPortalBundle:User')
+            ->findOneByUserId($user_id);
+            
+        if (!$to_user) {
+            throw $this->createNotFoundException('User does not exist');
+        }
+                
         if ($request->isMethod('post')) {
-
-
             $messageForm->bindRequest($request);
 
             if ($messageForm->isValid()) {
-
                 $message = $messageForm->getData();
-				
-				
-				$em = $this->getDoctrine()->getManager();
-		
-					$from_user = $this->getUser();
+                
+                
+                $em = $this->getDoctrine()->getManager();
+        
+                    $from_user = $this->getUser();
 
-					$message->setIdFrom($from_user->getUserId());
-					$message->setUserUser($from_user);
-					$message->setIdTo($to_user->getUserId());
-					$em->merge($message);
-					$em->flush();
-					
+                    $message->setIdFrom($from_user->getUserId());
+                    $message->setUserUser($from_user);
+                    $message->setIdTo($to_user->getUserId());
+                    $em->merge($message);
+                    $em->flush();
+                    
 
-				
+                
 
-				
-				        $request->getSession()->getFlashBag()->add(
-            'notice',
-            'Your message was sent!'
-        );
-				
-		$current_user = $this->getUser();
-		$current_user_id = $current_user->getUserId();
-		$messages = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Message')
-		->findByIdTo($current_user_id);
-		
+                
+                        $request->getSession()->getFlashBag()->add(
+                            'notice',
+                            'Your message was sent!'
+                        );
+                
+                        $current_user = $this->getUser();
+                        $current_user_id = $current_user->getUserId();
+                        $messages = $this->getDoctrine()
+                        ->getRepository('ProjectPortalBundle:Message')
+                        ->findByIdTo($current_user_id);
+        
 
-		return $this->render('ProjectPortalBundle:Message:index.html.twig', array('messages' => $messages ));
+                        return $this->render('ProjectPortalBundle:Message:index.html.twig', array(
+                        'messages' => $messages ));
 
             }
 
         }
-		
-        return $this->render('ProjectPortalBundle:Message:add.html.twig', array('form' => $messageForm->createView(), 'user_id' => $user_id, 'to_user' => $to_user));
+        
+        return $this->render('ProjectPortalBundle:Message:add.html.twig', array(
+        'form' => $messageForm->createView(), 'user_id' => $user_id, 'to_user' => $to_user));
 
 
-	}
-		    /**
+    }
+            /**
      * Shows messages
      *
      * @return void
      */
-	 
-		public function indexAction()
-    {
-		$current_user = $this->getUser();
-		$current_user_id = $current_user->getUserId();
-		$messages = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Message')
-		->findByIdTo($current_user_id);
-		
+     
+        public function indexAction()
+        {
+        $current_user = $this->getUser();
+        $current_user_id = $current_user->getUserId();
+        $messages = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:Message')
+        ->findByIdTo($current_user_id);
+        
 
-		return $this->render('ProjectPortalBundle:Message:index.html.twig', array('messages' => $messages ));
-    }
-	
-		    /**
+        return $this->render('ProjectPortalBundle:Message:index.html.twig', array('messages' => $messages ));
+        }
+    
+            /**
      * Shows message
      *
      * @param integer $message_id      id
      *
      * @return void
      */
-		public function viewAction($message_id)
-    {
-		
+        public function viewAction($message_id)
+        {
+        
 
-	    $message = $this->getDoctrine()
-        ->getRepository('ProjectPortalBundle:Message')
-        ->find($message_id);
+            $message = $this->getDoctrine()
+            ->getRepository('ProjectPortalBundle:Message')
+            ->find($message_id);
 
-		$user_from = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:User')
-		->findOneByUserId($message->getIdFrom());
-			
-		
+            $user_from = $this->getDoctrine()
+            ->getRepository('ProjectPortalBundle:User')
+            ->findOneByUserId($message->getIdFrom());
+            
+        
 
-    if (!$message) {
-        throw $this->createNotFoundException(
-            'This message doesnt exist! '.$message_id
-        );
-    }
+            if (!$message) {
+                throw $this->createNotFoundException(
+                    'This message doesnt exist! '.$message_id
+                );
+            }
 
-        return $this->render('ProjectPortalBundle:Message:view.html.twig', array('message' => $message, 'user_from' => $user_from));
-    }
+            return $this->render('ProjectPortalBundle:Message:view.html.twig', array(
+            'message' => $message, 'user_from' => $user_from));
+        }
 }

@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PostTags
  *
- * @ORM\Table(name="Post_Tags", indexes={@ORM\Index(name="fk_Post_Tags_Tag1_idx", columns={"Tag_tag_id"}, onDelete="SET NULL"), @ORM\Index(name="fk_Post_Tags_Post1_idx", columns={"Post_post_id"}, onDelete="SET NULL")})
+ * @ORM\Table(name="Post_Tags", indexes={@ORM\Index(name="fk_Post_Tags_Tag1_idx", columns={"Tag_tag_id"},
+ onDelete="SET NULL"), @ORM\Index(name="fk_Post_Tags_Post1_idx", columns={"Post_post_id"}, onDelete="SET NULL")})
  * @ORM\Entity
  * @package     ProjectPortalBundle
  * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
@@ -39,7 +40,8 @@ class PostTags
      *
      * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag", cascade={"persist"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Tag_tag_id", referencedColumnName="tag_id", nullable=true, cascade={"all"}, onDelete="CASCADE")
+     *   @ORM\JoinColumn(name="Tag_tag_id", referencedColumnName="tag_id",
+     nullable=true, cascade={"all"}, onDelete="CASCADE")
      * })
      */
     private $tagTag;
@@ -49,7 +51,7 @@ class PostTags
     /**
      * Get postTagId
      *
-     * @return integer 
+     * @return integer
      */
     public function getPostTagId()
     {
@@ -72,7 +74,7 @@ class PostTags
     /**
      * Get postPost
      *
-     * @return \Project\PortalBundle\Entity\Post 
+     * @return \Project\PortalBundle\Entity\Post
      */
     public function getPostPost()
     {
@@ -95,7 +97,7 @@ class PostTags
     /**
      * Get tagTag
      *
-     * @return \Project\PortalBundle\Entity\Tag 
+     * @return \Project\PortalBundle\Entity\Tag
      */
     public function getTagTag()
     {

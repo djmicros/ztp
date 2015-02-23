@@ -16,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  
 class TagType extends AbstractType
 {
-		    /**
+            /**
      * Tag form
      *
      * @param FormBuilderInterface $builder builder
@@ -24,10 +24,10 @@ class TagType extends AbstractType
      *
      * @return void
      */
-	 
+     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('tag_name', 'text', array( 
+        $builder->add('tag_name', 'text', array(
             'label' => false, 'required' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Add one tag.')

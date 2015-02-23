@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  
 class EditPostType extends AbstractType
 {
-		    /**
+            /**
      * Post editing form
      *
      * @param FormBuilderInterface $builder builder
@@ -23,14 +23,14 @@ class EditPostType extends AbstractType
      *
      * @return void
      */
-	 
+     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		
+        
         $builder
-			->add('post_body', 'textarea');
-			
-		$builder->add('tag', new TagType());
+            ->add('post_body', 'textarea');
+            
+        $builder->add('tag', new TagType());
 
     }
 
@@ -38,6 +38,4 @@ class EditPostType extends AbstractType
     {
         return 'PortalBundleFormTypePostType';
     }
-
 }
-

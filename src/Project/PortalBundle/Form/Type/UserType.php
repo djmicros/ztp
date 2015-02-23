@@ -16,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
  
 class UserType extends AbstractType
 {
-		    /**
+            /**
      * User register form
      *
      * @param FormBuilderInterface $builder builder
@@ -27,29 +27,29 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('username', 'text', array( 
+            ->add('username', 'text', array(
             'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Username')
             ))
-			->add('password', 'password', array( 'label' => false, 
+            ->add('password', 'password', array( 'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Password')))
-			->add('email', 'text', array( 'label' => false,
+            ->add('email', 'text', array( 'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Email')))
-			->add('gender', 'choice', array( 'label' => false,
-  'choice_list' => new ChoiceList(array("m", "f"), array('Male', 'Female')), 'attr'   =>  array(
+            ->add('gender', 'choice', array( 'label' => false,
+        'choice_list' => new ChoiceList(array("m", "f"), array('Male', 'Female')), 'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input')))
-			->add('birthDate', 'date', array( 'label' => false,
-    'widget' => 'single_text',
-    'format' => 'yyyy-MM-dd', 'attr'   =>  array(
+            ->add('birthDate', 'date', array( 'label' => false,
+        'widget' => 'single_text',
+        'format' => 'yyyy-MM-dd', 'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input')
-))
-			->add('city', 'text', array( 'label' => false,
+            ))
+            ->add('city', 'text', array( 'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'City')))
-			->add('phone', 'text', array( 'label' => false,
+            ->add('phone', 'text', array( 'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Phone Number')));
     }
@@ -58,5 +58,4 @@ class UserType extends AbstractType
     {
         return 'PortalBundleFormTypeUserType';
     }
-
 }

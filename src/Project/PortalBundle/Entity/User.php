@@ -94,7 +94,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -117,7 +117,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -140,7 +140,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -163,7 +163,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get gender
      *
-     * @return string 
+     * @return string
      */
     public function getGender()
     {
@@ -186,7 +186,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get birthDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthDate()
     {
@@ -209,7 +209,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -232,7 +232,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -242,64 +242,64 @@ class User implements UserInterface, \Serializable
     /**
      * Get userId
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserId()
     {
         return $this->userId;
     }
-	    /**
+        /**
      * Get Salt
      *
      * @return string
      */
-	    public function getSalt()
-    {
+        public function getSalt()
+        {
         return $this->salt = '';
-    }
+        }
     /**
      * Get Role
      *
-     * @return Role 
+     * @return Role
      */
-	
-		public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-	
-	
+    
+        public function getRoles()
+        {
+            return array('ROLE_USER');
+        }
+    
+    
     /**
      * @inheritDoc
      */
-    public function eraseCredentials()
-    {
-    }
+        public function eraseCredentials()
+        {
+        }
 
     /**
      * @see \Serializable::serialize()
      */
-    public function serialize()
-    {
-        return serialize(array(
+        public function serialize()
+        {
+            return serialize(array(
             $this->userId,
-			$this->password,
+            $this->password,
             $this->username,
-        ));
-    }
+            ));
+        }
 
     /**
      * @see \Serializable::unserialize()
      */
-    public function unserialize($serialized)
-    {
-        list (
+        public function unserialize($serialized)
+        {
+            list (
             $this->userId,
-        ) = unserialize($serialized);
-    }
-	
-	public function isEqualTo(UserInterface $user)
-	{
-		return $this->userId === $user->getId();
-	}
+            ) = unserialize($serialized);
+        }
+    
+        public function isEqualTo(UserInterface $user)
+        {
+            return $this->userId === $user->getId();
+        }
 }

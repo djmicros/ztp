@@ -30,7 +30,7 @@ class Tag
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $tagId;
-	
+    
 
 
 
@@ -50,7 +50,7 @@ class Tag
     /**
      * Get tagName
      *
-     * @return string 
+     * @return string
      */
     public function getTagName()
     {
@@ -60,7 +60,7 @@ class Tag
     /**
      * Get tagId
      *
-     * @return integer 
+     * @return integer
      */
     public function getTagId()
     {

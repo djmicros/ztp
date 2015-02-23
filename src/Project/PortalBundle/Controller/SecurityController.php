@@ -15,13 +15,13 @@ use Symfony\Component\Security\Core\SecurityContext;
  
 class SecurityController extends Controller
 {
-		    /**
+            /**
      * Logs user in
      *
      * @return void
      */
-	 
-    public function LoginAction()
+     
+    public function loginAction()
     {
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -47,14 +47,13 @@ class SecurityController extends Controller
             )
         );
     }
-		    /**
+            /**
      * checks login
      *
      * @return void
      */
-	
-	    public function loginCheckAction()
-    {
-    }
-
+    
+        public function loginCheckAction()
+        {
+        }
 }

@@ -7,7 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Friendship
  *
- * @ORM\Table(name="Friendship", uniqueConstraints={@ORM\UniqueConstraint(name="friend_2_UNIQUE", columns={"friend_2"}), @ORM\UniqueConstraint(name="friend_1_UNIQUE", columns={"friend_1"})}, indexes={@ORM\Index(name="fk_Friendship_User1_idx", columns={"User_user_id"})})
+ * @ORM\Table(name="Friendship", uniqueConstraints={@ORM\UniqueConstraint(name="friend_2_UNIQUE", columns={"friend_2"}),
+ @ORM\UniqueConstraint(name="friend_1_UNIQUE", columns={"friend_1"})},
+ indexes={@ORM\Index(name="fk_Friendship_User1_idx", columns={"User_user_id"})})
  * @ORM\Entity
  * @package     ProjectPortalBundle
  * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
@@ -54,8 +56,8 @@ class Friendship
      * })
      */
     private $userUser;
-	
-	public function __construct()
+    
+    public function __construct()
     {
         $this->setFriendshipDate(new \DateTime());
 
@@ -77,7 +79,7 @@ class Friendship
     /**
      * Get friendshipDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFriendshipDate()
     {
@@ -100,7 +102,7 @@ class Friendship
     /**
      * Get friend1
      *
-     * @return integer 
+     * @return integer
      */
     public function getFriend1()
     {
@@ -123,7 +125,7 @@ class Friendship
     /**
      * Get friend2
      *
-     * @return integer 
+     * @return integer
      */
     public function getFriend2()
     {
@@ -133,7 +135,7 @@ class Friendship
     /**
      * Get friendshipId
      *
-     * @return integer 
+     * @return integer
      */
     public function getFriendshipId()
     {
@@ -156,7 +158,7 @@ class Friendship
     /**
      * Get userUser
      *
-     * @return \Project\PortalBundle\Entity\User 
+     * @return \Project\PortalBundle\Entity\User
      */
     public function getUserUser()
     {

@@ -52,18 +52,18 @@ class Post
     private $userUser;
 
 
-	    public function __construct()
-    {
+        public function __construct()
+        {
         $this->setPostDate(new \DateTime());
 
-    }
-	
-	    /**
-	 * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag", cascade={"persist"})
+        }
+    
+        /**
+     * @ORM\ManyToOne(targetEntity="Project\PortalBundle\Entity\Tag", cascade={"persist"})
      * @Assert\Type(type="Project\PortalBundle\Entity\Tag")
      * @Assert\Valid()
      */
-    protected $tag;
+        protected $tag;
 
     /**
      * Set postBody
@@ -71,22 +71,22 @@ class Post
      * @param string $postBody
      * @return Post
      */
-    public function setPostBody($postBody)
-    {
-        $this->postBody = $postBody;
+        public function setPostBody($postBody)
+        {
+            $this->postBody = $postBody;
 
-        return $this;
-    }
+            return $this;
+        }
 
     /**
      * Get postBody
      *
-     * @return string 
+     * @return string
      */
-    public function getPostBody()
-    {
-        return $this->postBody;
-    }
+        public function getPostBody()
+        {
+            return $this->postBody;
+        }
 
     /**
      * Set postDate
@@ -94,32 +94,32 @@ class Post
      * @param \DateTime $postDate
      * @return Post
      */
-    public function setPostDate($postDate)
-    {
-        $this->postDate = $postDate;
+        public function setPostDate($postDate)
+        {
+            $this->postDate = $postDate;
 
-        return $this;
-    }
+            return $this;
+        }
 
     /**
      * Get postDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getPostDate()
-    {
-        return $this->postDate;
-    }
+        public function getPostDate()
+        {
+            return $this->postDate;
+        }
 
     /**
      * Get postId
      *
-     * @return integer 
+     * @return integer
      */
-    public function getPostId()
-    {
-        return $this->postId;
-    }
+        public function getPostId()
+        {
+            return $this->postId;
+        }
 
     /**
      * Set userUser
@@ -127,45 +127,44 @@ class Post
      * @param \Project\PortalBundle\Entity\User $userUser
      * @return Post
      */
-   public function setUserUser(\Project\PortalBundle\Entity\User $userUser = null)
-   
-    {
-        $this->userUser = $userUser;
+        public function setUserUser(\Project\PortalBundle\Entity\User $userUser = null)
+        {
+             $this->userUser = $userUser;
 
-        return $this;
-    }
+             return $this;
+        }
 
     /**
      * Get userUser
      *
-     * @return \Project\PortalBundle\Entity\User 
+     * @return \Project\PortalBundle\Entity\User
      */
-    public function getUserUser()
-    {
-        return $this->userUser;
-    }
-	
-	    /**
+        public function getUserUser()
+        {
+            return $this->userUser;
+        }
+    
+        /**
      * Get Tag
      *
-     * @return \Project\PortalBundle\Entity\Tag 
+     * @return \Project\PortalBundle\Entity\Tag
      */
-	
-	    public function getTag()
-    {
-        return $this->tag;
-    }
-	
-		    /**
-     * Set Tag 
-	 *
-	 * @param \Project\PortalBundle\Entity\Tag 
+    
+        public function getTag()
+        {
+            return $this->tag;
+        }
+    
+            /**
+     * Set Tag
      *
-     * @return Post 
+     * @param \Project\PortalBundle\Entity\Tag
+     *
+     * @return Post
      */
 
-    public function setTag(Tag $tag = null)
-    {
-        $this->tag = $tag;
-    }
+        public function setTag(Tag $tag = null)
+        {
+            $this->tag = $tag;
+        }
 }

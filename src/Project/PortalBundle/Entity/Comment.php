@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comment
  *
- * @ORM\Table(name="Comment", indexes={@ORM\Index(name="fk_Comment_User1_idx", columns={"User_user_id"}), @ORM\Index(name="fk_Comment_Post1_idx", columns={"Post_post_id"})})
+ * @ORM\Table(name="Comment", indexes={@ORM\Index(name="fk_Comment_User1_idx", columns={"User_user_id"}),
+ * @ORM\Index(name="fk_Comment_Post1_idx", columns={"Post_post_id"})})
  * @ORM\Entity
  * @package     ProjectPortalBundle
  * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
@@ -59,34 +60,34 @@ class Comment
     private $userUser;
 
 
-	    public function __construct()
-    {
+        public function __construct()
+        {
         $this->setCommentDate(new \DateTime());
 
-    }
-	
+        }
+    
     /**
      * Set commentBody
      *
      * @param string $commentBody
      * @return Comment
      */
-    public function setCommentBody($commentBody)
-    {
-        $this->commentBody = $commentBody;
+        public function setCommentBody($commentBody)
+        {
+            $this->commentBody = $commentBody;
 
-        return $this;
-    }
+            return $this;
+        }
 
     /**
      * Get commentBody
      *
-     * @return string 
+     * @return string
      */
-    public function getCommentBody()
-    {
-        return $this->commentBody;
-    }
+        public function getCommentBody()
+        {
+            return $this->commentBody;
+        }
 
     /**
      * Set commentDate
@@ -94,32 +95,32 @@ class Comment
      * @param \DateTime $commentDate
      * @return Comment
      */
-    public function setCommentDate($commentDate)
-    {
-        $this->commentDate = $commentDate;
+        public function setCommentDate($commentDate)
+        {
+            $this->commentDate = $commentDate;
 
-        return $this;
-    }
+            return $this;
+        }
 
     /**
      * Get commentDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getCommentDate()
-    {
-        return $this->commentDate;
-    }
+        public function getCommentDate()
+        {
+            return $this->commentDate;
+        }
 
     /**
      * Get commentId
      *
-     * @return integer 
+     * @return integer
      */
-    public function getCommentId()
-    {
-        return $this->commentId;
-    }
+        public function getCommentId()
+        {
+            return $this->commentId;
+        }
 
     /**
      * Set postPost
@@ -127,22 +128,22 @@ class Comment
      * @param \Project\PortalBundle\Entity\Post $postPost
      * @return Comment
      */
-    public function setPostPost(\Project\PortalBundle\Entity\Post $postPost = null)
-    {
-        $this->postPost = $postPost;
+        public function setPostPost(\Project\PortalBundle\Entity\Post $postPost = null)
+        {
+            $this->postPost = $postPost;
 
-        return $this;
-    }
+            return $this;
+        }
 
     /**
      * Get postPost
      *
-     * @return \Project\PortalBundle\Entity\Post 
+     * @return \Project\PortalBundle\Entity\Post
      */
-    public function getPostPost()
-    {
-        return $this->postPost;
-    }
+        public function getPostPost()
+        {
+            return $this->postPost;
+        }
 
     /**
      * Set userUser
@@ -150,20 +151,20 @@ class Comment
      * @param \Project\PortalBundle\Entity\User $userUser
      * @return Comment
      */
-    public function setUserUser(\Project\PortalBundle\Entity\User $userUser = null)
-    {
-        $this->userUser = $userUser;
+        public function setUserUser(\Project\PortalBundle\Entity\User $userUser = null)
+        {
+            $this->userUser = $userUser;
 
-        return $this;
-    }
+            return $this;
+        }
 
     /**
      * Get userUser
      *
-     * @return \Project\PortalBundle\Entity\User 
+     * @return \Project\PortalBundle\Entity\User
      */
-    public function getUserUser()
-    {
-        return $this->userUser;
-    }
+        public function getUserUser()
+        {
+            return $this->userUser;
+        }
 }

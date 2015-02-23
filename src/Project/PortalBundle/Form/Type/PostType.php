@@ -17,7 +17,7 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-			    /**
+                /**
      * Post form
      *
      * @param FormBuilderInterface $builder builder
@@ -25,15 +25,15 @@ class PostType extends AbstractType
      *
      * @return void
      */
-		
+        
         $builder
-			->add('post_body', 'textarea', array( 
+            ->add('post_body', 'textarea', array(
             'label' => false,
             'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input', 'placeholder' => 'What is on your mind...?')
             ));
-			
-		$builder->add('tag', new TagType(), array('label' => false));
+            
+        $builder->add('tag', new TagType(), array('label' => false));
 
     }
 
@@ -41,6 +41,4 @@ class PostType extends AbstractType
     {
         return 'PortalBundleFormTypePostType';
     }
-
 }
-

@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Like
  *
- * @ORM\Table(name="Likes", indexes={@ORM\Index(name="fk_Like_Post1_idx", columns={"Post_post_id"}), @ORM\Index(name="fk_Like_User1_idx", columns={"User_user_id"})})
+ * @ORM\Table(name="Likes", indexes={@ORM\Index(name="fk_Like_Post1_idx",
+ columns={"Post_post_id"}), @ORM\Index(name="fk_Like_User1_idx", columns={"User_user_id"})})
  * @ORM\Entity
  * @package     ProjectPortalBundle
  * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
@@ -47,7 +48,7 @@ class Like
     /**
      * Get likeId
      *
-     * @return integer 
+     * @return integer
      */
     public function getLikeId()
     {
@@ -70,7 +71,7 @@ class Like
     /**
      * Get userUser
      *
-     * @return \Project\PortalBundle\Entity\User 
+     * @return \Project\PortalBundle\Entity\User
      */
     public function getUserUser()
     {
@@ -93,7 +94,7 @@ class Like
     /**
      * Get postPost
      *
-     * @return \Project\PortalBundle\Entity\Post 
+     * @return \Project\PortalBundle\Entity\Post
      */
     public function getPostPost()
     {

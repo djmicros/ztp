@@ -7,7 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Message
  *
- * @ORM\Table(name="Message", uniqueConstraints={@ORM\UniqueConstraint(name="id_from_UNIQUE", columns={"id_from"}), @ORM\UniqueConstraint(name="id_to_UNIQUE", columns={"id_to"})}, indexes={@ORM\Index(name="fk_Message_User_idx", columns={"User_user_id"})})
+ * @ORM\Table(name="Message", uniqueConstraints={@ORM\UniqueConstraint(
+ name="id_from_UNIQUE", columns={"id_from"}), @ORM\UniqueConstraint(name="id_to_UNIQUE", columns={"id_to"})},
+ indexes={@ORM\Index(name="fk_Message_User_idx", columns={"User_user_id"})})
  * @ORM\Entity
  * @package     ProjectPortalBundle
  * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
@@ -63,7 +65,7 @@ class Message
     private $userUser;
 
 
-	public function __construct()
+    public function __construct()
     {
         $this->setMessageTime(new \DateTime());
 
@@ -85,7 +87,7 @@ class Message
     /**
      * Get idFrom
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdFrom()
     {
@@ -108,7 +110,7 @@ class Message
     /**
      * Get idTo
      *
-     * @return integer 
+     * @return integer
      */
     public function getIdTo()
     {
@@ -131,7 +133,7 @@ class Message
     /**
      * Get messageTime
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getMessageTime()
     {
@@ -154,7 +156,7 @@ class Message
     /**
      * Get msgBody
      *
-     * @return string 
+     * @return string
      */
     public function getMsgBody()
     {
@@ -164,7 +166,7 @@ class Message
     /**
      * Get messageId
      *
-     * @return integer 
+     * @return integer
      */
     public function getMessageId()
     {
@@ -187,7 +189,7 @@ class Message
     /**
      * Get userUser
      *
-     * @return \Project\PortalBundle\Entity\User 
+     * @return \Project\PortalBundle\Entity\User
      */
     public function getUserUser()
     {
