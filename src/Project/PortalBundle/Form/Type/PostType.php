@@ -12,7 +12,11 @@ class PostType extends AbstractType
     {
 		
         $builder
-			->add('post_body', 'textarea', array('label' => "Post:"));
+			->add('post_body', 'textarea', array( 
+            'label' => false,
+            'attr'   =>  array(
+                'class'   => 'form-control input-sm chat-input', 'placeholder' => 'What is on your mind...?')
+            ));
 			
 		$builder->add('tag', new TagType(), array('label' => false));
 

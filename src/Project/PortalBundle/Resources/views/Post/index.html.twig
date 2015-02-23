@@ -4,18 +4,36 @@
 <h1> Newest Posts: </h1>
 	</br>
 {% for flashMessage in app.session.flashbag.get('notice') %}
-    <div class="flash-notice">
+        <div class="alert alert-info">
         {{ flashMessage }}
     </div>
 {% endfor %}
 <div class="container">
+	
     <ul class="timeline">
+	
+	<li>
+          <div class="timeline-badge info"><i class="glyphicon glyphicon-plus"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+            <form action="{{ path('project_portal_add') }}" method="post" {{ form_enctype(new_post_form) }} role="form">
+				<div class="form-group">
+						{{ form_widget(new_post_form) }}
+				</div>
+						<input type="submit" class="btn btn-success btn-xs"/>
+			</form>
+            </div>
+            <div class="timeline-body">
+              <p>dsfsdfdsfdsfdsf</p>
+            </div>
+          </div>
+        </li>
 	{% for post in posts %}
         <li>
           <div class="timeline-badge"><i class="glyphicon glyphicon-console"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">{{ post.UserUser.username }} says:</h4>
+              <h4 class="timeline-title"><a href="{{ path('project_portal_user', { 'user_id': post.UserUser.userId  }) }}"> {{ post.UserUser.username }}</a> says:</h4>
               <p><a href="{{ path('project_portal_view', { 'post_id': post.postId }) }}"> {{ post.postBody[:120] ~ '...'}} </a></p>
             </div>
             <div class="timeline-body">

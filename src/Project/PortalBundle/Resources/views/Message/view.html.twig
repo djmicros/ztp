@@ -3,7 +3,7 @@
 
 {% block body %}
     <div class="well">
-        <h1> Message from {{ message.idFrom }}  </h1>
+        <h1> Message from {{ user_from.username }}:  </h1>
     <div class="well"> <h3>{{ message.msgBody }}</h3> 
 		<small>Sent: {{ message.messageTime|date('Y-m-d') }}</small>
 	</div>

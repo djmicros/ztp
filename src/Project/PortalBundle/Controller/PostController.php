@@ -32,8 +32,11 @@ class PostController extends Controller
 		->getRepository('ProjectPortalBundle:Post');
 		
 		$posts = $repository->findAll();
+		
+		$new_post = new Post();
+        $new_postForm = $this->createForm(new Type\PostType(), $new_post);
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts, 'new_post_form' => $new_postForm->createView()));
     }
 	     
 
@@ -61,11 +64,21 @@ class PostController extends Controller
         ->getRepository('ProjectPortalBundle:Like')
         ->findBy(array('postPost' => $post_id));
 		
+		
 		$comment = new Comment();
         $commentForm = $this->createForm(new Type\CommentType(), $comment);
-	
+		
+		$post_tag = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:PostTags')
+        ->findOneBy(array('postPost' => $current_post));
+		
+		$tag_id = $post_tag->getTagTag()->getTagId();
+		
+		$tag = $this->getDoctrine()
+        ->getRepository('ProjectPortalBundle:Tag')
+        ->findOneByTagId($tag_id);
 
-        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments, 'likes' => $likes, 'comment_form' => $commentForm->createView() ));
+        return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments, 'likes' => $likes, 'tag' => $tag, 'comment_form' => $commentForm->createView() ));
     }
 	
 	public function addAction(Request $request)
@@ -132,15 +145,16 @@ class PostController extends Controller
 				
 				        $request->getSession()->getFlashBag()->add(
             'notice',
-            'Your post were saved!'
+            'Your post was saved!'
         );
-				
+		
 		$repository = $this->getDoctrine()
 		->getRepository('ProjectPortalBundle:Post');
-		
 		$posts = $repository->findAll();
+		$new_post = new Post();
+        $new_postForm = $this->createForm(new Type\PostType(), $new_post);
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts));
+		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts, 'new_post_form' => $new_postForm->createView()));
 
 	
 				 /**

@@ -10,7 +10,11 @@ class TagType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('tag_name', 'text', array('required' => false, 'label' => "Tag:"));
+        $builder->add('tag_name', 'text', array( 
+            'label' => false, 'required' => false,
+            'attr'   =>  array(
+                'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Add one tag.')
+            ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

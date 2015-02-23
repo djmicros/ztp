@@ -66,18 +66,20 @@ class MessageController extends Controller
             'Your message was sent!'
         );
 				
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
+		$current_user = $this->getUser();
+		$current_user_id = $current_user->getUserId();
+		$messages = $this->getDoctrine()
+		->getRepository('ProjectPortalBundle:Message')
+		->findByIdTo($current_user_id);
 		
-		$posts = $repository->findAll();
 
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
+		return $this->render('ProjectPortalBundle:Message:index.html.twig', array('messages' => $messages ));
 
             }
 
         }
-
-        return $this->render('ProjectPortalBundle:Message:add.html.twig', array('form' => $messageForm->createView(), 'user_id' => $user_id));
+		
+        return $this->render('ProjectPortalBundle:Message:add.html.twig', array('form' => $messageForm->createView(), 'user_id' => $user_id, 'to_user' => $to_user));
 
 
 	}
@@ -101,6 +103,10 @@ class MessageController extends Controller
 	    $message = $this->getDoctrine()
         ->getRepository('ProjectPortalBundle:Message')
         ->find($message_id);
+
+		$user_from = $this->getDoctrine()
+		->getRepository('ProjectPortalBundle:User')
+		->findOneByUserId($message->getIdFrom());
 			
 		
 
@@ -110,6 +116,6 @@ class MessageController extends Controller
         );
     }
 
-        return $this->render('ProjectPortalBundle:Message:view.html.twig', array('message' => $message));
+        return $this->render('ProjectPortalBundle:Message:view.html.twig', array('message' => $message, 'user_from' => $user_from));
     }
 }

@@ -10,18 +10,26 @@
 
         <h2> Post:  </h2>
     <div class="well"> 
-	<small>Added: {{ post.postDate|date('Y-m-d') }} - Author: {{ post.UserUser.username }} </small>
+	<small>Added: {{ post.postDate|date('Y-m-d') }} - Author: <a href="{{ path('project_portal_user', { 'user_id': post.UserUser.userId  }) }}"> {{ post.UserUser.username }} </a> 
+		{% if tag.tagName != null %}
+		- tag: <a href="{{ path('project_portal_tag_view', { 'tag_name': tag.tagName  }) }}"> {{ tag.tagName }} </a>
+		{% endif %}
+		</small>
 	</br>
 	<div class="panel-body">
 	<h4>{{ post.postBody }}</h4> 
 	</div>
 		</br>
 		<strong>Likes: {{ likes|length }} </strong>
+			
+			{% if likes|length == 0 %}
+				<a href="{{ path('project_portal_like', { 'post_id': post.postId }) }}" class="btn btn-primary btn-medium">Like <i class="glyphicon glyphicon-thumbs-up"></i></a>
+			{% endif %}
 			{% for like in likes %}
 				{% if like.UserUser.username == app.user.username %} 
-					<a href="{{ path('project_portal_unlike', { 'post_id': post.postId }) }}" class="btn btn-primary btn-danger">Unlike</a>
+					<a href="{{ path('project_portal_unlike', { 'post_id': post.postId }) }}" class="btn btn-primary btn-danger">Unlike <i class="glyphicon glyphicon-thumbs-down"></i></a>
 				{% else %}
-					<a href="{{ path('project_portal_like', { 'post_id': post.postId }) }}" class="btn btn-primary btn-medium">Like</a>
+					<a href="{{ path('project_portal_like', { 'post_id': post.postId }) }}" class="btn btn-primary btn-medium">Like <i class="glyphicon glyphicon-thumbs-up"></i></a>
 				{% endif %}
 			{% endfor %}
 				</div>

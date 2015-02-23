@@ -2,9 +2,10 @@
 
 
 {% block body %}
-<h1>Write Message:</h1>
+<h1>Write Message to {{ to_user.username }}:</h1>
     <form action="{{ path('project_portal_new_message', { 'user_id': user_id }) }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
-        <input type="submit" class="btn btn-success btn-xs" />
+		</br>
+        <input type="submit" class="btn btn-info btn-xs" />
     </form>
 {% endblock %}

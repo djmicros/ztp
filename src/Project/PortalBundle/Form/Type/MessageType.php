@@ -12,7 +12,11 @@ class MessageType extends AbstractType
     {
 		
         $builder
-			->add('msg_body', 'textarea', array('label' => false));
+			->add('msg_body', 'textarea', array( 
+            'label' => false,
+            'attr'   =>  array(
+                'class'   => 'form-control input-sm chat-input', 'placeholder' => 'Write your message...')
+            ));
 
     }
 
