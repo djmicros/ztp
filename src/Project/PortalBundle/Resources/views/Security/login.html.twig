@@ -1,11 +1,13 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-{% if error %}
-    <div>{{ error.message }}</div>
-{% endif %}
 
 <div class="col-md-offset-5 col-md-3">
+{% if error %}
+<div class="alert alert-danger" role="alert">
+     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{ error.message }}
+</div>
+{% endif %}
 <h1>Login:</h1>
 <form action="{{ path('login_check') }}" method="post">
     <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control input-sm chat-input" placeholder="username" />
@@ -14,6 +16,8 @@
 	</br>
 	<input type="hidden" name="_target_path" value="/index" />
     <button class="btn btn-primary btn-md" type="submit">Login</button>
-</form>
+	</br>
+	<small>Not yet registered? - <a href="{{ path('project_portal_register') }}">Register here!</a>
+</form> 
 </div>
 {% endblock %}
