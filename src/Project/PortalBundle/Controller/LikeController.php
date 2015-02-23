@@ -18,9 +18,25 @@ use Project\PortalBundle\Entity\PostTags;
 use Project\PortalBundle\Entity\Comment;
 use Project\PortalBundle\Entity\Like;
 
+/**
+ * Like controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class LikeController extends Controller
 {
-
+	    /**
+     * Adds Like
+     *
+     * @param integer $post_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
+	 
 	public function addAction(Request $request, $post_id)
     {
 
@@ -55,7 +71,15 @@ class LikeController extends Controller
 				
 return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
 
-            }
+    }
+		    /**
+     * Removes Like
+     *
+     * @param integer $post_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
 
 
 		public function deleteAction(Request $request, $post_id)

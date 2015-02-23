@@ -10,13 +10,24 @@ use Project\PortalBundle\Entity\Tag;
 use Project\PortalBundle\Entity\Post;
 use Project\PortalBundle\Entity\Post_Tags;
 
+/**
+ * Tag controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class TagController extends Controller
 {
 
-	/**
-     * @Route("/tag/{tag_name}")
-		*/     
-
+	    /**
+     * Shows tag
+     *
+     * @param integer $tag_name      id
+     *
+     * @return void
+     */   
 
 	public function viewAction($tag_name)
     {

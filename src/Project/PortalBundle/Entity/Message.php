@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="Message", uniqueConstraints={@ORM\UniqueConstraint(name="id_from_UNIQUE", columns={"id_from"}), @ORM\UniqueConstraint(name="id_to_UNIQUE", columns={"id_to"})}, indexes={@ORM\Index(name="fk_Message_User_idx", columns={"User_user_id"})})
  * @ORM\Entity
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
  */
 class Message
 {

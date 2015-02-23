@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="Likes", indexes={@ORM\Index(name="fk_Like_Post1_idx", columns={"Post_post_id"}), @ORM\Index(name="fk_Like_User1_idx", columns={"User_user_id"})})
  * @ORM\Entity
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
  */
 class Like
 {
@@ -40,8 +43,6 @@ class Like
      * })
      */
     private $postPost;
-
-
 
     /**
      * Get likeId

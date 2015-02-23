@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="Tag", uniqueConstraints={@ORM\UniqueConstraint(name="tag_name_UNIQUE", columns={"tag_name"})})
  * @ORM\Entity
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
  */
 class Tag
 {

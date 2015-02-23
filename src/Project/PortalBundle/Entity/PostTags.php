@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="Post_Tags", indexes={@ORM\Index(name="fk_Post_Tags_Tag1_idx", columns={"Tag_tag_id"}, onDelete="SET NULL"), @ORM\Index(name="fk_Post_Tags_Post1_idx", columns={"Post_post_id"}, onDelete="SET NULL")})
  * @ORM\Entity
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
  */
 class PostTags
 {

@@ -6,8 +6,25 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Tag form type
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class TagType extends AbstractType
 {
+		    /**
+     * Tag form
+     *
+     * @param FormBuilderInterface $builder builder
+     * @param array                $options options
+     *
+     * @return void
+     */
+	 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('tag_name', 'text', array( 

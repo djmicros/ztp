@@ -10,32 +10,27 @@ use Project\PortalBundle\Form\Type;
 use Project\PortalBundle\Entity\User;
 use Project\PortalBundle\Entity\Friendship;
 
+/**
+ * User controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class UserController extends Controller
 {
-
-	/**
-     * @Route("/")
-
-
-	public function indexAction()
-    {
-
-		$repository = $this->getDoctrine()
-		->getRepository('ProjectPortalBundle:Post');
-		
-		$posts = $repository->findAll();
-
-		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
-    }
-		*/     
+	    /**
+     * Shows user
+     *
+     * @param integer $user_id      id
+     *
+     * @return void
+     */    
 
 
 	public function viewAction($user_id)
     {
-		
-			 /**
-     * @Route("/view/{post_id}")
-	     */
 
 	    $current_user = $this->getDoctrine()
         ->getRepository('ProjectPortalBundle:User')
@@ -61,6 +56,13 @@ class UserController extends Controller
 		
         return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user, 'friendship' => $friendship ));
     }
+		    /**
+     * Adds user
+     *
+     * @param Request $request request
+     *
+     * @return void
+     */
 
 	    public function addAction(Request $request)
     {
@@ -105,6 +107,14 @@ class UserController extends Controller
 		return $this->render('ProjectPortalBundle:User:add.html.twig', array('form' => $userForm->createView()));
     }
 
+		    /**
+     * Shows user
+     *
+     * @param integer $user_id      id
+     *
+     * @return void
+     */
+	 
 	public function view_postsAction($user_id)
     {
 		
@@ -135,7 +145,11 @@ class UserController extends Controller
 	
         //return $this->render('ProjectPortalBundle:User:view.html.twig', array('user' => $current_user ));
     }
-
+	    /**
+     * Shows users
+     *
+     * @return void
+     */
 	public function indexAction()
     {
 

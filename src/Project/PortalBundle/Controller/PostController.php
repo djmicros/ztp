@@ -18,12 +18,22 @@ use Project\PortalBundle\Entity\PostTags;
 use Project\PortalBundle\Entity\User;
 use Project\PortalBundle\Entity\Comment;
 
+/**
+ * Post controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class PostController extends Controller
 {
 
-	/**
-     * @Route("/")
-	*/
+	    /**
+     * Shows posts
+     *
+     * @return void
+     */
 
 	public function indexAction()
     {
@@ -39,7 +49,13 @@ class PostController extends Controller
 		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts, 'new_post_form' => $new_postForm->createView()));
     }
 	     
-
+	    /**
+     * Shows post
+     *
+     * @param integer $post_id      id
+     *
+     * @return void
+     */
 
 	public function viewAction($post_id)
     {
@@ -81,6 +97,14 @@ class PostController extends Controller
         return $this->render('ProjectPortalBundle:Post:view.html.twig', array('post' => $current_post, 'comments' => $comments, 'likes' => $likes, 'tag' => $tag, 'comment_form' => $commentForm->createView() ));
     }
 	
+		    /**
+     * Adds post
+     *
+     * @param Request $request request
+     *
+     * @return void
+     */
+	 
 	public function addAction(Request $request)
     {
 
@@ -156,22 +180,21 @@ class PostController extends Controller
 
 		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts, 'new_post_form' => $new_postForm->createView()));
 
-	
-				 /**
-    if (!in_array($post_id, $posts)) {
-        throw $this->createNotFoundException('The post does not exist');
-    }
-	
-	$current_post = $posts[$post_id];
-	*/
-
             }
 
         }
 
         return $this->render('ProjectPortalBundle:Post:add.html.twig', array('form' => $postForm->createView()));
     }
-	
+		    /**
+     * Edits message
+     *
+     * @param integer $post_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
+	 
 		public function editAction(Request $request, $post_id)
     {
 		$em = $this->getDoctrine()->getEntityManager();
@@ -257,6 +280,15 @@ class PostController extends Controller
 	}
     }
 	
+		    /**
+     * Deletes post
+     *
+     * @param integer $post_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
+	 
 		public function deleteAction(Request $request, $post_id)
     {
 		
@@ -293,11 +325,6 @@ class PostController extends Controller
 		return $this->render('ProjectPortalBundle:Post:index.html.twig', array('posts' => $posts ));
 
 		}
-	
-
-	
-	
-	
 
         return $this->render('ProjectPortalBundle:Post:delete.html.twig', array('post' => $current_post, 'post_id' => $post_id ));
 	}

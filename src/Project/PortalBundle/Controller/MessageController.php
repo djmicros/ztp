@@ -19,9 +19,24 @@ use Project\PortalBundle\Entity\Comment;
 use Project\PortalBundle\Entity\Like;
 use Project\PortalBundle\Entity\Message;
 
+/**
+ * Message controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class MessageController extends Controller
 {
-
+	    /**
+     * Adds message
+     *
+     * @param integer $user_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
 	public function addAction(Request $request, $user_id)
     {
 
@@ -83,7 +98,12 @@ class MessageController extends Controller
 
 
 	}
-	
+		    /**
+     * Shows messages
+     *
+     * @return void
+     */
+	 
 		public function indexAction()
     {
 		$current_user = $this->getUser();
@@ -96,6 +116,13 @@ class MessageController extends Controller
 		return $this->render('ProjectPortalBundle:Message:index.html.twig', array('messages' => $messages ));
     }
 	
+		    /**
+     * Shows message
+     *
+     * @param integer $message_id      id
+     *
+     * @return void
+     */
 		public function viewAction($message_id)
     {
 		

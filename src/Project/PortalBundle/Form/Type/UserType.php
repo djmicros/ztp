@@ -6,9 +6,24 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
-
+/**
+ * User add form type
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class UserType extends AbstractType
 {
+		    /**
+     * User register form
+     *
+     * @param FormBuilderInterface $builder builder
+     * @param array                $options options
+     *
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -28,7 +43,6 @@ class UserType extends AbstractType
                 'class'   => 'form-control input-sm chat-input')))
 			->add('birthDate', 'date', array( 'label' => false,
     'widget' => 'single_text',
-    // this is actually the default format for single_text
     'format' => 'yyyy-MM-dd', 'attr'   =>  array(
                 'class'   => 'form-control input-sm chat-input')
 ))

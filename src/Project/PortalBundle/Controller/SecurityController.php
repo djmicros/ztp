@@ -5,8 +5,22 @@ namespace Project\PortalBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 
+/**
+ * Security controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class SecurityController extends Controller
 {
+		    /**
+     * Logs user in
+     *
+     * @return void
+     */
+	 
     public function LoginAction()
     {
         $request = $this->getRequest();
@@ -33,6 +47,11 @@ class SecurityController extends Controller
             )
         );
     }
+		    /**
+     * checks login
+     *
+     * @return void
+     */
 	
 	    public function loginCheckAction()
     {

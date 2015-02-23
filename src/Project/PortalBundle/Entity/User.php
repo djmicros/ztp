@@ -12,6 +12,9 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  *
  * @ORM\Table(name="User")
  * @ORM\Entity
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
  */
 class User implements UserInterface, \Serializable
 {
@@ -245,12 +248,20 @@ class User implements UserInterface, \Serializable
     {
         return $this->userId;
     }
-	
+	    /**
+     * Get Salt
+     *
+     * @return string
+     */
 	    public function getSalt()
     {
         return $this->salt = '';
     }
-
+    /**
+     * Get Role
+     *
+     * @return Role 
+     */
 	
 		public function getRoles()
     {

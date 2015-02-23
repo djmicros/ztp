@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="Post", indexes={@ORM\Index(name="fk_Post_User1_idx", columns={"User_user_id"})})
  * @ORM\Entity
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
  */
 class Post
 {
@@ -142,10 +145,24 @@ class Post
         return $this->userUser;
     }
 	
+	    /**
+     * Get Tag
+     *
+     * @return \Project\PortalBundle\Entity\Tag 
+     */
+	
 	    public function getTag()
     {
         return $this->tag;
     }
+	
+		    /**
+     * Set Tag 
+	 *
+	 * @param \Project\PortalBundle\Entity\Tag 
+     *
+     * @return Post 
+     */
 
     public function setTag(Tag $tag = null)
     {

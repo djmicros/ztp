@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="Friendship", uniqueConstraints={@ORM\UniqueConstraint(name="friend_2_UNIQUE", columns={"friend_2"}), @ORM\UniqueConstraint(name="friend_1_UNIQUE", columns={"friend_1"})}, indexes={@ORM\Index(name="fk_Friendship_User1_idx", columns={"User_user_id"})})
  * @ORM\Entity
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
  */
 class Friendship
 {
@@ -57,8 +60,6 @@ class Friendship
         $this->setFriendshipDate(new \DateTime());
 
     }
-
-
 
     /**
      * Set friendshipDate

@@ -17,8 +17,24 @@ use Project\PortalBundle\Entity\Tag;
 use Project\PortalBundle\Entity\PostTags;
 use Project\PortalBundle\Entity\Comment;
 
+/**
+ * Comment controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class CommentController extends Controller
 {
+	    /**
+     * Adds Comment
+     *
+     * @param integer $post_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
 
 	public function addAction(Request $request, $post_id)
     {
@@ -65,22 +81,21 @@ class CommentController extends Controller
 
 		return $this->redirect($this->generateUrl("project_portal_view",array('post_id' => $post_id)));
 
-	
-				 /**
-    if (!in_array($post_id, $posts)) {
-        throw $this->createNotFoundException('The post does not exist');
-    }
-	
-	$current_post = $posts[$post_id];
-	*/
-
             }
 
         }
 
         return $this->render('ProjectPortalBundle:Comment:add.html.twig', array('form' => $commentForm->createView(), 'post_id' => $post_id));
     }
-
+	    /**
+     * Edits Comment
+     *
+     * @param integer $comment_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
+	 
 		public function editAction(Request $request, $comment_id)
     {
 		$em = $this->getDoctrine()->getEntityManager();
@@ -134,6 +149,15 @@ class CommentController extends Controller
         );
 	}
     }
+	
+		    /**
+     * Removes Comment
+     *
+     * @param integer $comment_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
 
 		public function deleteAction(Request $request, $comment_id)
     {

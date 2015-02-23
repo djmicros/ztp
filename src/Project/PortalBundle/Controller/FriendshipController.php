@@ -19,9 +19,25 @@ use Project\PortalBundle\Entity\Comment;
 use Project\PortalBundle\Entity\Like;
 use Project\PortalBundle\Entity\Friendship;
 
+/**
+ * Friendship controller
+ *
+ * @package     ProjectPortalBundle
+ * @author        Adrian Kuciel <kontakt@adriankuciel.pl>
+ * @link            http://wierzba.wzks.uj.edu.pl/~10_kuciel/ztp/web
+ */
+ 
 class FriendshipController extends Controller
 {
-
+	    /**
+     * Adds Friendship
+     *
+     * @param integer $user_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
+	 
 	public function addAction(Request $request, $user_id)
     {
 
@@ -63,7 +79,15 @@ return $this->redirect($this->generateUrl("project_portal_user",array('user_id' 
 
             }
 
-
+	    /**
+     * Removes Friendship
+     *
+     * @param integer $user_id      id
+     * @param Request $request request
+     *
+     * @return void
+     */
+	 
 		public function deleteAction(Request $request, $user_id)
     {
 		$current_user = $this->getUser();
